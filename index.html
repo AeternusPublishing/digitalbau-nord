@@ -5,345 +5,411 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Digitalbau Nord · Websites erstellen, pflegen & Shops einrichten</title>
 <meta name="description" content="Digitalbau Nord baut professionelle Websites für kleine und mittlere Unternehmen – Erstellung, laufende Pflege, Shop-Integration und SEO aus einer Hand. Region Hamburg / Oststeinbek.">
-<meta name="theme-color" content="#0e1a16">
+<meta name="theme-color" content="#12202b">
 <meta property="og:title" content="Digitalbau Nord – Websites aus einer Hand">
 <meta property="og:description" content="Erstellung, Pflege, Shop-Integration & SEO für KMU. Region Hamburg.">
 <meta property="og:type" content="website">
 <meta name="robots" content="noindex"><!-- Vorschau: vor Launch entfernen -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314b88a'/%3E%3Ctext x='16' y='23' font-size='20' font-family='Arial' font-weight='bold' text-anchor='middle' fill='%230e1a16'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2312202b'/%3E%3Crect x='1.5' y='1.5' width='29' height='29' fill='none' stroke='rgba(255,255,255,0.35)' stroke-width='1'/%3E%3Ctext x='16' y='23' font-size='19' font-family='Arial Narrow,Arial' font-weight='bold' text-anchor='middle' fill='%239ec2e6'%3ED%3C/text%3E%3C/svg%3E">
 <style>
+  /* ── Fonts: selbst gehostet, kein CDN ─────────────────────────────── */
+  @font-face{font-family:'Barlow';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/barlow-400.woff2') format('woff2')}
+  @font-face{font-family:'Barlow';font-style:normal;font-weight:500;font-display:swap;src:url('assets/fonts/barlow-500.woff2') format('woff2')}
+  @font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/barlow-condensed-400.woff2') format('woff2')}
+  @font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:600;font-display:swap;src:url('assets/fonts/barlow-condensed-600.woff2') format('woff2')}
+
+  /* ── Tokens (Industry-System, dunkle Metallic-Variante) ───────────── */
   :root{
-    --bg:#0e1a16; --bg2:#0b1512; --panel:#132420; --panel2:#18302a; --line:#213b34;
-    --ink:#eef6f2; --muted:#9db8ae; --brand:#14b88a; --brand-d:#0e8f6b; --brand-l:#5fe3bd;
-    --accent:#ffc46b; --chip:#16302a;
-    --radius:16px; --maxw:1140px;
+    --text:#eaf1f8; --bg:#12202b; --bg-deep:#0e1922;
+    --accent:#5980a6; --accent-hi:#94bce3; --accent-brand:#9ec2e6;
+    --accent-600:#597ea3; --accent-700:#416180;
+    --divider:rgba(255,255,255,0.16); --frame:rgba(255,255,255,0.30);
+    --t78:rgba(234,241,248,0.78); --t74:rgba(234,241,248,0.74); --t72:rgba(234,241,248,0.72);
+    --t68:rgba(234,241,248,0.68); --t65:rgba(234,241,248,0.65); --t60:rgba(234,241,248,0.60);
+    --t55:rgba(234,241,248,0.55); --t50:rgba(234,241,248,0.50);
+    --font-heading:"Barlow Condensed",system-ui,sans-serif;
+    --font-body:"Barlow",system-ui,sans-serif;
+    --maxw:1360px;
   }
-  *{box-sizing:border-box}
+  *,*::before,*::after{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  body{margin:0;font-family:var(--font-body);font-size:15px;line-height:1.55;color:var(--text);
+    background:linear-gradient(158deg,#274056 0%,#15242f 52%,#0e1922 100%) fixed;
+    background-color:var(--bg)}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:linear-gradient(rgba(255,255,255,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.05) 1px,transparent 1px);
+    background-size:44px 44px}
+  main,header,footer{position:relative;z-index:1}
+  h1,h2,h3,h4{font-family:var(--font-heading);font-weight:600;line-height:1.12;letter-spacing:-0.015em;margin:0}
+  p{margin:0}
   a{color:inherit;text-decoration:none}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
-  h1,h2,h3{letter-spacing:-.02em;line-height:1.12;margin:0}
-  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:15px;padding:13px 22px;
-    border-radius:12px;cursor:pointer;border:1px solid transparent;transition:.18s;white-space:nowrap}
-  .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-d));color:#04120d;box-shadow:0 8px 24px -8px rgba(20,184,138,.6)}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px -8px rgba(20,184,138,.7)}
-  .btn-ghost{background:transparent;border-color:var(--line);color:var(--ink)}
-  .btn-ghost:hover{border-color:var(--brand);color:var(--brand-l)}
+  :focus{outline:none}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  ::selection{background:rgba(89,128,166,0.3)}
 
-  /* NAV */
-  header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
-    background:rgba(14,26,22,.82);border-bottom:1px solid var(--line)}
-  .nav-in{display:flex;align-items:center;justify-content:space-between;height:66px}
-  .logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:19px}
-  .logo .mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--brand),var(--brand-l));
-    display:grid;place-items:center;color:#04120d;font-weight:900;font-size:18px}
-  .logo small{display:block;font-weight:500;font-size:11px;color:var(--muted);letter-spacing:.02em;margin-top:-2px}
-  nav.links{display:none;gap:28px;font-size:15px;color:var(--muted);font-weight:500}
-  nav.links a:hover{color:var(--ink)}
-  .nav-cta{display:none}
-  @media(min-width:900px){nav.links{display:flex}.nav-cta{display:inline-flex}}
+  .wrap{max-width:var(--maxw);margin:0 auto}
+  .section{padding:64px 48px;border-bottom:1px solid var(--divider)}
+  .kicker{font-family:var(--font-heading);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-hi);margin-bottom:10px}
+  .h2{font-size:38px}
+  .idx{font-family:var(--font-heading);font-size:13px;letter-spacing:.1em;color:var(--accent-hi)}
 
-  /* HERO */
-  .hero{position:relative;overflow:hidden;padding:84px 0 70px}
-  .hero::before{content:"";position:absolute;inset:0;z-index:0;
-    background:radial-gradient(60% 55% at 78% 8%,rgba(20,184,138,.20),transparent 60%),
-               radial-gradient(50% 45% at 8% 90%,rgba(255,196,107,.10),transparent 60%)}
-  .hero-in{position:relative;z-index:1;max-width:800px}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--brand-l);
-    background:var(--chip);border:1px solid var(--line);padding:7px 15px;border-radius:999px;margin-bottom:22px}
-  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 4px rgba(20,184,138,.18)}
-  h1{font-size:clamp(34px,6vw,58px);font-weight:850}
-  h1 .hl{background:linear-gradient(120deg,var(--brand-l),var(--brand));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero p{font-size:clamp(17px,2.2vw,21px);color:var(--muted);max-width:620px;margin:22px 0 34px}
-  .hero-actions{display:flex;flex-wrap:wrap;gap:14px}
-  .trust{display:flex;flex-wrap:wrap;gap:22px;margin-top:40px;color:var(--muted);font-size:14px}
-  .trust span{display:flex;align-items:center;gap:8px}
-  .trust svg{width:18px;height:18px;fill:var(--brand)}
+  /* ── Blueprint-Rahmen mit Eckmarken ───────────────────────────────── */
+  .blueprint{position:relative;border:1px solid var(--divider);border-radius:0}
+  .blueprint.framed{border-color:var(--frame)}
+  .corner{position:absolute;width:11px;height:11px;color:var(--t55)}
+  .corner::before,.corner::after{content:"";position:absolute;background:currentColor}
+  .corner::before{left:5px;top:0;width:1px;height:100%}
+  .corner::after{top:5px;left:0;width:100%;height:1px}
+  .corner.tl{top:-6px;left:-6px}.corner.tr{top:-6px;right:-6px}
+  .corner.bl{bottom:-6px;left:-6px}.corner.br{bottom:-6px;right:-6px}
+  .duo-clip{position:relative;overflow:hidden;height:100%}
+  .duo-clip::after{content:"";position:absolute;inset:0;pointer-events:none;background:var(--accent);mix-blend-mode:color}
 
-  /* SECTION */
-  section{padding:78px 0;border-top:1px solid var(--line)}
-  .sec-head{max-width:640px;margin-bottom:44px}
-  .sec-head .kicker{color:var(--brand);font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
-  .sec-head h2{font-size:clamp(27px,4vw,38px);font-weight:800;margin-top:10px}
-  .sec-head p{color:var(--muted);font-size:17px;margin-top:12px}
+  /* ── Buttons ──────────────────────────────────────────────────────── */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;
+    font-family:var(--font-heading);font-weight:600;font-size:14px;line-height:1.2;
+    border:1px solid var(--divider);border-radius:0;padding:13px 22px;transition:background .15s,color .15s}
+  .btn svg{display:block}
+  .btn-primary{background:var(--accent);border-color:var(--accent);color:#0e1922}
+  .btn-primary:hover{background:var(--accent-600)}
+  .btn-primary:active{background:var(--accent-700)}
+  .btn-secondary{color:var(--text)}
+  .btn-secondary:hover{background:rgba(234,241,248,0.07)}
+  .btn-secondary:active{background:rgba(234,241,248,0.14)}
+  .btn-block{width:100%;padding:12px}
 
-  .grid{display:grid;gap:20px}
-  @media(min-width:720px){.grid.g2{grid-template-columns:1fr 1fr}.grid.g4{grid-template-columns:1fr 1fr}}
-  @media(min-width:1000px){.grid.g4{grid-template-columns:repeat(4,1fr)}.grid.g3{grid-template-columns:repeat(3,1fr)}}
+  .tag{display:inline-flex;align-items:center;font-size:11px;letter-spacing:.02em;padding:3px 10px;border-radius:0;background:var(--accent);color:#0e1922}
+  .trust{display:inline-flex;align-items:center;gap:9px;font-size:14px}
+  .trust svg{flex:none}
 
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:.2s}
-  .card:hover{border-color:var(--brand-d);transform:translateY(-3px)}
-  .ico{width:48px;height:48px;border-radius:12px;background:var(--panel2);display:grid;place-items:center;margin-bottom:16px}
-  .ico svg{width:26px;height:26px;stroke:var(--brand-l);fill:none;stroke-width:1.8}
-  .card h3{font-size:19px;font-weight:750;margin-bottom:8px}
-  .card p{color:var(--muted);font-size:15px;margin:0}
+  /* ── Nav ──────────────────────────────────────────────────────────── */
+  .nav{display:flex;align-items:center;gap:32px;padding:22px 48px;border-bottom:1px solid var(--divider)}
+  .brand{display:flex;align-items:center;gap:13px;margin-right:auto}
+  .brand-mark{width:38px;height:38px;display:grid;place-items:center;font-family:var(--font-heading);font-weight:600;font-size:21px;color:var(--accent-brand)}
+  .brand-name{font-family:var(--font-heading);font-weight:600;font-size:18px;display:block;line-height:1.1}
+  .brand-sub{font-size:11px;letter-spacing:.04em;color:var(--t60)}
+  .nav-links{display:flex;gap:26px;font-size:14px}
+  .nav-links a:hover{color:var(--accent-hi)}
+  .nav-toggle{position:absolute;opacity:0;pointer-events:none}
+  .nav-burger{display:none}
 
-  /* PROCESS */
-  .steps{counter-reset:s;display:grid;gap:18px}
-  @media(min-width:820px){.steps{grid-template-columns:repeat(4,1fr)}}
-  .step{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px}
-  .step::before{counter-increment:s;content:counter(s);position:absolute;top:-14px;left:22px;width:34px;height:34px;
-    border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand-l));color:#04120d;font-weight:900;
-    display:grid;place-items:center;font-size:16px}
-  .step h3{font-size:17px;margin:12px 0 6px;font-weight:750}
-  .step p{color:var(--muted);font-size:14.5px;margin:0}
+  /* ── Hero ─────────────────────────────────────────────────────────── */
+  .hero{display:grid;grid-template-columns:1.08fr .92fr;gap:56px;padding:64px 48px;border-bottom:1px solid var(--divider)}
+  .hero-kicker{display:flex;align-items:center;gap:10px;font-family:var(--font-heading);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-hi);margin-bottom:24px}
+  .hero-kicker::before{content:"";width:28px;height:1px;background:var(--accent-hi)}
+  .hero h1{font-size:72px;line-height:1.0;letter-spacing:-.02em;margin-bottom:24px}
+  .hero h1 em{font-style:normal;color:var(--accent-hi)}
+  .lede{font-size:18px;line-height:1.55;max-width:34ch;color:var(--t78);margin-bottom:32px}
+  .hero-actions{display:flex;gap:12px;margin-bottom:34px;flex-wrap:wrap}
+  .hero-trust{display:flex;gap:28px;flex-wrap:wrap}
+  .hero-visual{min-height:410px}
+  .hero-visual svg{display:block;width:100%;height:100%;min-height:410px}
 
-  /* PRICING */
-  .price-grid{display:grid;gap:22px}
-  @media(min-width:900px){.price-grid{grid-template-columns:repeat(3,1fr);align-items:start}}
-  .price{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:30px 26px;position:relative;display:flex;flex-direction:column}
-  .price.feat{border-color:var(--brand);box-shadow:0 0 0 1px var(--brand),0 20px 50px -20px rgba(20,184,138,.5)}
-  .price .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--brand);color:#04120d;
-    font-size:12px;font-weight:800;padding:5px 14px;border-radius:999px;letter-spacing:.03em}
-  .price h3{font-size:20px;font-weight:800}
-  .price .desc{color:var(--muted);font-size:14px;margin:6px 0 18px;min-height:40px}
-  .price .amount{font-size:36px;font-weight:850;letter-spacing:-.03em}
-  .price .amount small{font-size:15px;font-weight:600;color:var(--muted)}
-  .price ul{list-style:none;padding:0;margin:20px 0 26px;display:grid;gap:11px}
-  .price li{position:relative;padding-left:28px;font-size:14.5px;color:var(--ink)}
-  .price li::before{content:"";position:absolute;left:0;top:5px;width:17px;height:17px;border-radius:50%;
-    background:var(--chip);
-    -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/></svg>") center/13px no-repeat;
-    background-color:var(--brand)}
-  .price .btn{margin-top:auto;justify-content:center;width:100%}
-  .price-note{text-align:center;color:var(--muted);font-size:13.5px;margin-top:22px}
+  /* ── Leistungen ───────────────────────────────────────────────────── */
+  .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--divider)}
+  .svc{padding:20.4px 13.6px}
+  .svc + .svc{border-left:1px solid var(--divider)}
+  .svc svg{margin:18px 0 14px}
+  .svc h4{font-size:20px;margin-bottom:8px}
+  .svc p{font-size:13px;color:var(--t68)}
 
-  /* PFLEGE strip */
-  .strip{background:linear-gradient(135deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:20px;
-    padding:40px;display:grid;gap:26px}
-  @media(min-width:860px){.strip{grid-template-columns:1.1fr 1fr;align-items:center}}
-  .strip h2{font-size:28px;font-weight:800;margin-bottom:10px}
-  .strip p{color:var(--muted);margin:0}
-  .abo{display:grid;gap:12px}
-  .abo-row{display:flex;justify-content:space-between;align-items:center;gap:14px;background:var(--bg2);
-    border:1px solid var(--line);border-radius:12px;padding:14px 18px}
-  .abo-row b{font-size:15px}
-  .abo-row span{color:var(--muted);font-size:13px}
-  .abo-row .p{color:var(--brand-l);font-weight:800;white-space:nowrap}
+  /* ── Ablauf ───────────────────────────────────────────────────────── */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .step{padding:24px}
+  .step .idx{font-size:15px}
+  .step h4{font-size:20px;margin:14px 0 8px}
+  .step p{font-size:13px;color:var(--t68)}
 
-  /* FAQ */
-  details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:2px 20px;margin-bottom:12px}
-  details summary{cursor:pointer;padding:16px 0;font-weight:650;font-size:16px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
-  details summary::-webkit-details-marker{display:none}
-  details summary::after{content:"+";font-size:22px;color:var(--brand-l);font-weight:400;transition:.2s}
-  details[open] summary::after{transform:rotate(45deg)}
-  details p{color:var(--muted);margin:0 0 18px;font-size:15px}
+  /* ── Preise ───────────────────────────────────────────────────────── */
+  .prices{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .price{padding:32px;display:flex;flex-direction:column}
+  .price.feat{background:rgba(148,188,227,0.08)}
+  .price .tag{position:absolute;top:-11px;left:32px}
+  .price h3{font-size:26px;margin-bottom:6px}
+  .price .desc{font-size:13px;color:var(--t68);margin-bottom:18px}
+  .price .amount{font-family:var(--font-heading);font-weight:600;font-size:34px;margin-bottom:20px}
+  .price .amount span{font-size:14px;color:var(--t60);font-weight:400}
+  .price .feats{display:flex;flex-direction:column;gap:10px;font-size:13px;margin-bottom:26px;flex:1}
+  .price .feats .trust{font-size:13px}
+  .price-note{font-size:12px;margin-top:20px;color:var(--t55)}
 
-  /* CONTACT */
-  .contact{background:linear-gradient(135deg,rgba(20,184,138,.12),rgba(14,26,22,0));border:1px solid var(--line);
-    border-radius:22px;padding:48px 36px;text-align:center}
-  .contact h2{font-size:clamp(26px,4vw,36px);font-weight:850;margin-bottom:12px}
-  .contact p{color:var(--muted);font-size:17px;max-width:520px;margin:0 auto 28px}
-  .contact .btn{font-size:16px;padding:15px 28px}
-  .contact .alt{margin-top:18px;color:var(--muted);font-size:14px}
+  /* ── Pflege ───────────────────────────────────────────────────────── */
+  .care{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+  .care h2{font-size:38px;margin-bottom:14px}
+  .care-text p{color:var(--t74)}
+  .care-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--divider)}
+  .care-cell{padding:20.4px 13.6px}
+  .care-cell + .care-cell{border-left:1px solid var(--divider)}
+  .care-cell h4{font-size:20px;margin-bottom:6px}
+  .care-cell p{font-size:12px;color:var(--t65);margin-bottom:16px}
+  .care-cell .p{font-family:var(--font-heading);font-weight:600;font-size:26px}
+  .care-cell .p span{font-size:12px;color:var(--t60);font-weight:400}
 
-  footer{border-top:1px solid var(--line);padding:44px 0 60px;color:var(--muted);font-size:14px}
-  .foot-in{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center}
-  .foot-links{display:flex;gap:22px}
-  .foot-links a:hover{color:var(--ink)}
-  .ph{color:var(--accent);font-weight:600}
+  /* ── FAQ ──────────────────────────────────────────────────────────── */
+  .faq{display:grid;grid-template-columns:1fr 1fr;gap:28px 56px}
+  .faq h4{font-size:20px;margin-bottom:8px}
+  .faq p{font-size:14px;color:var(--t72)}
+
+  /* ── Kontakt ──────────────────────────────────────────────────────── */
+  .contact-sec{padding:80px 48px}
+  .contact{padding:56px;text-align:center;background:rgba(148,188,227,0.06)}
+  .contact h2{font-size:44px;margin:0 auto 14px;max-width:20ch}
+  .contact p.sub{margin:0 auto 28px;color:var(--t74);max-width:52ch}
+  .contact .alt{margin-top:22px;font-size:14px;color:var(--t60)}
+  .contact .alt a{color:var(--accent-hi)}
+  .contact .alt a:hover{text-decoration:underline;text-underline-offset:3px}
+
+  /* ── Footer ───────────────────────────────────────────────────────── */
+  .footer{border-top:1px solid var(--divider);padding:32px 48px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+  .footer .fb{font-family:var(--font-heading);font-weight:600;font-size:16px;margin-right:auto}
+  .footer-links{display:flex;gap:24px;font-size:13px}
+  .footer-links a:hover{color:var(--accent-hi)}
+  .footer .copy{font-size:12px;color:var(--t50);width:100%}
+
+  /* ── Responsiv ────────────────────────────────────────────────────── */
+  @media(max-width:980px){
+    .section,.hero,.contact-sec{padding:40px 20px}
+    .nav{padding:16px 20px;flex-wrap:wrap;gap:16px}
+    .nav-burger{display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--divider);cursor:pointer;margin-left:auto}
+    .brand{margin-right:0}
+    .nav-links{display:none;width:100%;flex-direction:column;gap:0;border-top:1px solid var(--divider);padding-top:8px}
+    .nav-links a{padding:12px 4px;min-height:44px;display:flex;align-items:center}
+    .nav-toggle:checked ~ .nav-links{display:flex}
+    .nav-cta{display:none}
+    .hero{grid-template-columns:1fr;gap:36px}
+    .hero h1{font-size:44px}
+    .hero-visual,.hero-visual svg{min-height:300px}
+    .svc-grid{grid-template-columns:1fr}
+    .svc + .svc{border-left:0;border-top:1px solid var(--divider)}
+    .steps{grid-template-columns:1fr}
+    .prices{grid-template-columns:1fr}
+    .care{grid-template-columns:1fr;gap:32px}
+    .care-grid{grid-template-columns:1fr}
+    .care-cell + .care-cell{border-left:0;border-top:1px solid var(--divider)}
+    .faq{grid-template-columns:1fr}
+    .contact{padding:36px 22px}
+    .contact h2{font-size:32px}
+    .h2{font-size:30px}
+  }
 </style>
 </head>
 <body>
 
-<header class="nav">
-  <div class="wrap nav-in">
-    <a class="logo" href="#top">
-      <span class="mark">D</span>
-      <span>Digitalbau Nord<small>Websites aus einer Hand</small></span>
-    </a>
-    <nav class="links">
-      <a href="#leistungen">Leistungen</a>
-      <a href="#ablauf">Ablauf</a>
-      <a href="#preise">Preise</a>
-      <a href="#pflege">Pflege</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-    <a class="btn btn-primary nav-cta" href="#kontakt">Kostenloses Erstgespräch</a>
-  </div>
+<header class="nav wrap">
+  <a class="brand" href="#top" aria-label="Digitalbau Nord — zum Seitenanfang">
+    <span class="brand-mark blueprint framed"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>D</span>
+    <span><span class="brand-name">Digitalbau Nord</span><span class="brand-sub">Websites aus einer Hand</span></span>
+  </a>
+  <label class="nav-burger" for="navtoggle" aria-label="Menü öffnen">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+  </label>
+  <input type="checkbox" id="navtoggle" class="nav-toggle">
+  <nav class="nav-links">
+    <a href="#leistungen">Leistungen</a>
+    <a href="#ablauf">Ablauf</a>
+    <a href="#preise">Preise</a>
+    <a href="#pflege">Pflege</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <a class="btn btn-primary nav-cta" href="#kontakt" style="padding:10px 16px">Kostenloses Erstgespräch</a>
 </header>
 
+<main>
 <a id="top"></a>
-<section class="hero" style="border-top:none">
-  <div class="wrap hero-in">
-    <span class="eyebrow"><span class="dot"></span>Region Hamburg · Oststeinbek &amp; Umgebung</span>
-    <h1>Ihre Website. <span class="hl">Erstellt, gepflegt</span><br>und startklar zum Verkaufen.</h1>
-    <p>Professionelle Websites und Online-Shops für kleine und mittlere Betriebe – alles aus einer Hand: Konzept, Umsetzung, laufende Pflege und Sichtbarkeit bei Google.</p>
+
+<!-- HERO -->
+<section class="hero wrap">
+  <div>
+    <div class="hero-kicker">Region Hamburg · Oststeinbek</div>
+    <h1>Ihre Website. Erstellt, gepflegt und <em>startklar zum Verkaufen.</em></h1>
+    <p class="lede">Professionelle Websites und Online-Shops für kleine und mittlere Betriebe — Konzept, Umsetzung, Pflege und Google-Sichtbarkeit aus einer Hand.</p>
     <div class="hero-actions">
-      <a class="btn btn-primary" href="#kontakt">Projekt anfragen &nbsp;→</a>
-      <a class="btn btn-ghost" href="#preise">Pakete &amp; Preise ansehen</a>
+      <a class="btn btn-primary" href="#kontakt">Projekt anfragen <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+      <a class="btn btn-secondary" href="#preise">Pakete &amp; Preise</a>
     </div>
-    <div class="trust">
-      <span><svg viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5z"/></svg>DSGVO- &amp; abmahnsicher</span>
-      <span><svg viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7z"/></svg>In 2 Wochen online</span>
-      <span><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1 15-4-4 1.4-1.4L11 14.2l5.6-5.6L18 10z"/></svg>Persönlicher Ansprechpartner</span>
+    <div class="hero-trust">
+      <span class="trust"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>DSGVO- &amp; abmahnsicher</span>
+      <span class="trust"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>In 2 Wochen online</span>
+      <span class="trust"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Persönlicher Ansprechpartner</span>
+    </div>
+  </div>
+  <div class="hero-visual blueprint framed"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+    <div class="duo-clip">
+    <!-- Blueprint-Platzhalter, bis Projektfotos vorliegen (dann: <img> + Duotone bleibt) -->
+    <svg viewBox="0 0 620 460" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Technische Skizze einer Website">
+      <rect width="620" height="460" fill="#1a2c3b"/>
+      <g stroke="#94bce3" stroke-width="1" fill="none" opacity=".85">
+        <rect x="70" y="60" width="480" height="330"/>
+        <line x1="70" y1="102" x2="550" y2="102"/>
+        <circle cx="92" cy="81" r="5"/><circle cx="112" cy="81" r="5"/><circle cx="132" cy="81" r="5"/>
+        <rect x="100" y="140" width="200" height="16"/>
+        <rect x="100" y="170" width="150" height="10" opacity=".6"/>
+        <rect x="100" y="196" width="90" height="28"/>
+        <rect x="340" y="132" width="180" height="120"/>
+        <line x1="340" y1="132" x2="520" y2="252" opacity=".5"/>
+        <line x1="520" y1="132" x2="340" y2="252" opacity=".5"/>
+        <rect x="100" y="280" width="130" height="80"/>
+        <rect x="245" y="280" width="130" height="80"/>
+        <rect x="390" y="280" width="130" height="80"/>
+        <line x1="20" y1="30" x2="20" y2="430" opacity=".4"/>
+        <line x1="12" y1="60" x2="28" y2="60" opacity=".4"/>
+        <line x1="12" y1="390" x2="28" y2="390" opacity=".4"/>
+        <line x1="70" y1="440" x2="550" y2="440" opacity=".4"/>
+        <line x1="70" y1="432" x2="70" y2="448" opacity=".4"/>
+        <line x1="550" y1="432" x2="550" y2="448" opacity=".4"/>
+      </g>
+      <g font-family="Barlow Condensed,system-ui" font-size="11" fill="#94bce3" opacity=".7">
+        <text x="26" y="240" transform="rotate(-90 26 240)">460</text>
+        <text x="300" y="456" text-anchor="middle">1360</text>
+      </g>
+    </svg>
     </div>
   </div>
 </section>
 
 <!-- LEISTUNGEN -->
-<section id="leistungen">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kicker">Leistungen</span>
-      <h2>Alles rund um Ihre Website – aus einer Hand</h2>
-      <p>Von der ersten Idee bis zur laufenden Betreuung. Sie haben einen Ansprechpartner, der sich um alles kümmert.</p>
+<section id="leistungen" class="section wrap">
+  <div class="kicker">Leistungen</div>
+  <h2 class="h2" style="margin-bottom:36px">Alles rund um Ihre Website — aus einer Hand</h2>
+  <div class="svc-grid">
+    <div class="svc">
+      <div class="idx">01</div>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14"/><path d="M8 21h8M12 17v4"/></svg>
+      <h4>Website-Erstellung</h4>
+      <p>Moderne, mobil-optimierte Seiten, die zu Ihrem Betrieb passen — schnell, sicher, auffindbar.</p>
     </div>
-    <div class="grid g4">
-      <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 21h8"/></svg></div>
-        <h3>Website-Erstellung</h3>
-        <p>Moderne, mobil-optimierte Websites, die zu Ihrem Betrieb passen – schnell, sicher und auffindbar.</p>
-      </div>
-      <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.6-2-3.5-2.4 1a7 7 0 0 0-1.7-1L16.5 2h-4l-.3 2.4a7 7 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.6a7 7 0 0 0 0 2l-2 1.6 2 3.5 2.4-1a7 7 0 0 0 1.7 1l.3 2.4h4l.3-2.4a7 7 0 0 0 1.7-1l2.4 1 2-3.5-2-1.6a7 7 0 0 0 .1-1z"/></svg></div>
-        <h3>Pflege &amp; Wartung</h3>
-        <p>Updates, Backups, Sicherheit und kleine Änderungen – im monatlichen Abo. Sie müssen sich um nichts kümmern.</p>
-      </div>
-      <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M6 6 5 3H2"/></svg></div>
-        <h3>Shop-Integration</h3>
-        <p>Verkaufen Sie online – mit WooCommerce oder Shopify, inkl. Zahlung, Versand und rechtssicherer Einrichtung.</p>
-      </div>
-      <div class="card">
-        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
-        <h3>SEO &amp; Google</h3>
-        <p>Gefunden werden, wo Ihre Kunden suchen: Google-Business-Profil, lokale Sichtbarkeit und technisches SEO.</p>
-      </div>
+    <div class="svc">
+      <div class="idx">02</div>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-2.9 1.2V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-2.9-1.2l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0-1.2-2.9H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.2-2.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 2.9 1.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg>
+      <h4>Pflege &amp; Wartung</h4>
+      <p>Updates, Backups, Sicherheit und kleine Änderungen — im monatlichen Abo.</p>
+    </div>
+    <div class="svc">
+      <div class="idx">03</div>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2 2h2l2.7 12.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L22 7H5.1"/></svg>
+      <h4>Shop-Integration</h4>
+      <p>WooCommerce oder Shopify — inkl. Zahlung, Versand und rechtssicherer Einrichtung.</p>
+    </div>
+    <div class="svc">
+      <div class="idx">04</div>
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <h4>SEO &amp; Google</h4>
+      <p>Google-Business-Profil, lokale Sichtbarkeit und technisches SEO.</p>
     </div>
   </div>
 </section>
 
 <!-- ABLAUF -->
-<section id="ablauf">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kicker">So läuft's ab</span>
-      <h2>In vier Schritten zu Ihrer Website</h2>
-      <p>Transparent, ohne Fachchinesisch. Sie wissen immer, woran wir gerade arbeiten.</p>
-    </div>
-    <div class="steps">
-      <div class="step"><h3>Gespräch</h3><p>Kostenloses Erstgespräch: Was brauchen Sie, was ist Ihr Ziel? Sie erhalten ein klares Angebot.</p></div>
-      <div class="step"><h3>Entwurf</h3><p>Wir gestalten einen ersten Entwurf. Sie geben Feedback, gemeinsam verfeinern wir ihn.</p></div>
-      <div class="step"><h3>Umsetzung</h3><p>Wir bauen alles fertig – Texte, Bilder, Technik, Impressum &amp; Datenschutz inklusive.</p></div>
-      <div class="step"><h3>Live &amp; Pflege</h3><p>Ihre Seite geht online. Auf Wunsch übernehmen wir die laufende Pflege für Sie.</p></div>
-    </div>
+<section id="ablauf" class="section wrap">
+  <div class="kicker">So läuft's ab</div>
+  <h2 class="h2" style="margin-bottom:36px">In vier Schritten zu Ihrer Website</h2>
+  <div class="steps">
+    <div class="step blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i><div class="idx">01</div><h4>Gespräch</h4><p>Kostenloses Erstgespräch — Sie erhalten ein klares Festpreis-Angebot.</p></div>
+    <div class="step blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i><div class="idx">02</div><h4>Entwurf</h4><p>Erster Entwurf, Ihr Feedback — gemeinsam verfeinern wir ihn.</p></div>
+    <div class="step blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i><div class="idx">03</div><h4>Umsetzung</h4><p>Texte, Bilder, Technik, Impressum &amp; Datenschutz inklusive.</p></div>
+    <div class="step blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i><div class="idx">04</div><h4>Live &amp; Pflege</h4><p>Ihre Seite geht online — auf Wunsch übernehmen wir die Pflege.</p></div>
   </div>
 </section>
 
 <!-- PREISE -->
-<section id="preise">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kicker">Pakete &amp; Preise</span>
-      <h2>Klare Pakete, faire Preise</h2>
-      <p>Keine versteckten Kosten. Sie sehen von Anfang an, was Sie bekommen.</p>
+<section id="preise" class="section wrap">
+  <div class="kicker">Pakete &amp; Preise</div>
+  <h2 class="h2" style="margin-bottom:8px">Klare Pakete, faire Preise</h2>
+  <p style="margin-bottom:36px;color:var(--t72)">Keine versteckten Kosten. Sie sehen von Anfang an, was Sie bekommen.</p>
+  <div class="prices">
+    <div class="price blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <h3>Starter</h3>
+      <p class="desc">Der perfekte Auftritt für Handwerker &amp; kleine Betriebe.</p>
+      <div class="amount">ab 490 €<span> einmalig</span></div>
+      <div class="feats">
+        <span class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Professioneller One-Pager</span>
+        <span class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Mobil-optimiert &amp; schnell</span>
+        <span class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Kontaktformular</span>
+        <span class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Impressum &amp; Datenschutz</span>
+        <span class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Online in ca. 2 Wochen</span>
+      </div>
+      <a class="btn btn-secondary btn-block" href="#kontakt">Anfragen</a>
     </div>
-    <div class="price-grid">
-      <div class="price">
-        <h3>Starter</h3>
-        <p class="desc">Der perfekte Auftritt für Handwerker &amp; kleine Betriebe.</p>
-        <div class="amount">ab 490&nbsp;€ <small>einmalig</small></div>
-        <ul>
-          <li>Professioneller One-Pager</li>
-          <li>Mobil-optimiert &amp; schnell</li>
-          <li>Kontaktformular</li>
-          <li>Impressum &amp; Datenschutz</li>
-          <li>Online in ca. 2 Wochen</li>
-        </ul>
-        <a class="btn btn-ghost" href="#kontakt">Anfragen</a>
+    <div class="price feat blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <span class="tag">Beliebt</span>
+      <h3>Business</h3>
+      <p class="desc">Die vollständige Website für etablierte Unternehmen.</p>
+      <div class="amount">ab 1.200 €<span> einmalig</span></div>
+      <div class="feats">
+        <span class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>5–8 individuelle Seiten</span>
+        <span class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Eigenes Design für Ihre Marke</span>
+        <span class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Google-Business-Einrichtung</span>
+        <span class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Bildoptimierung &amp; Basis-SEO</span>
+        <span class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Einweisung zur Pflege</span>
       </div>
-      <div class="price feat">
-        <span class="badge">Beliebt</span>
-        <h3>Business</h3>
-        <p class="desc">Die vollständige Website für etablierte Unternehmen.</p>
-        <div class="amount">ab 1.200&nbsp;€ <small>einmalig</small></div>
-        <ul>
-          <li>5–8 individuelle Seiten</li>
-          <li>Eigenes Design für Ihre Marke</li>
-          <li>Google-Business-Einrichtung</li>
-          <li>Bildoptimierung &amp; Basis-SEO</li>
-          <li>Einweisung zur Pflege</li>
-        </ul>
-        <a class="btn btn-primary" href="#kontakt">Anfragen</a>
-      </div>
-      <div class="price">
-        <h3>Shop</h3>
-        <p class="desc">Ihr eigener Online-Shop, rechtssicher eingerichtet.</p>
-        <div class="amount">ab 1.500&nbsp;€ <small>einmalig</small></div>
-        <ul>
-          <li>WooCommerce oder Shopify</li>
-          <li>Zahlungs- &amp; Versandarten</li>
-          <li>Produkte anlegen</li>
-          <li>Rechtssichere Shop-Texte</li>
-          <li>Schulung für den Alltag</li>
-        </ul>
-        <a class="btn btn-ghost" href="#kontakt">Anfragen</a>
-      </div>
+      <a class="btn btn-primary btn-block" href="#kontakt">Anfragen</a>
     </div>
-    <p class="price-note">Alle Preise sind Richtwerte und werden nach Ihrem konkreten Bedarf als Festpreis angeboten. Alle Preise zzgl. gesetzlicher Umsatzsteuer.</p>
+    <div class="price blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <h3>Shop</h3>
+      <p class="desc">Ihr eigener Online-Shop, rechtssicher eingerichtet.</p>
+      <div class="amount">ab 1.500 €<span> einmalig</span></div>
+      <div class="feats">
+        <span class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>WooCommerce oder Shopify</span>
+        <span class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Zahlungs- &amp; Versandarten</span>
+        <span class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Produkte anlegen</span>
+        <span class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Rechtssichere Shop-Texte</span>
+        <span class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Schulung für den Alltag</span>
+      </div>
+      <a class="btn btn-secondary btn-block" href="#kontakt">Anfragen</a>
+    </div>
   </div>
+  <p class="price-note">Alle Preise sind Richtwerte und werden nach Ihrem konkreten Bedarf als Festpreis angeboten. Alle Preise zzgl. gesetzlicher Umsatzsteuer.</p>
 </section>
 
 <!-- PFLEGE -->
-<section id="pflege">
-  <div class="wrap">
-    <div class="strip">
-      <div>
-        <h2>Pflege-Abo: Ihre Website in guten Händen</h2>
-        <p>Eine Website ist nie „fertig". Wir halten sie sicher, aktuell und schnell – Sie kümmern sich um Ihr Geschäft. Monatlich kündbar.</p>
-      </div>
-      <div class="abo">
-        <div class="abo-row"><div><b>Basis</b><br><span>Hosting, Updates, Backups, Sicherheit</span></div><div class="p">29–49&nbsp;€/M</div></div>
-        <div class="abo-row"><div><b>Komfort</b><br><span>+ kleine Änderungen &amp; Support</span></div><div class="p">59–99&nbsp;€/M</div></div>
-        <div class="abo-row"><div><b>Rundum</b><br><span>+ Inhaltspflege &amp; SEO-Monitoring</span></div><div class="p">129–199&nbsp;€/M</div></div>
-      </div>
+<section id="pflege" class="section wrap">
+  <div class="care">
+    <div class="care-text">
+      <div class="kicker">Pflege-Abo</div>
+      <h2>Ihre Website in guten Händen</h2>
+      <p>Eine Website ist nie „fertig". Wir halten sie sicher, aktuell und schnell — Sie kümmern sich um Ihr Geschäft. Monatlich kündbar.</p>
+    </div>
+    <div class="care-grid">
+      <div class="care-cell"><h4>Basis</h4><p>Hosting, Updates, Backups, Sicherheit</p><div class="p">29–49 €<span>/M</span></div></div>
+      <div class="care-cell"><h4>Komfort</h4><p>+ kleine Änderungen &amp; Support</p><div class="p">59–99 €<span>/M</span></div></div>
+      <div class="care-cell"><h4>Rundum</h4><p>+ Inhaltspflege &amp; SEO-Monitoring</p><div class="p">129–199 €<span>/M</span></div></div>
     </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section id="faq">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="kicker">Häufige Fragen</span>
-      <h2>Gut zu wissen</h2>
-    </div>
-    <div style="max-width:760px">
-      <details open><summary>Was kostet mich eine Website wirklich?</summary><p>Das hängt vom Umfang ab. Ein einfacher, professioneller Auftritt startet bei 490&nbsp;€ einmalig. Nach einem kurzen Gespräch bekommen Sie ein klares Festpreis-Angebot – ohne Überraschungen.</p></details>
-      <details><summary>Wie lange dauert es, bis meine Seite online ist?</summary><p>Ein Starter-Paket ist in der Regel in rund zwei Wochen live, sobald uns Ihre Inhalte (Texte, Logo, Bilder) vorliegen. Umfangreichere Projekte dauern entsprechend länger.</p></details>
-      <details><summary>Ich habe keine Texte oder Bilder – ist das ein Problem?</summary><p>Überhaupt nicht. Wir unterstützen bei Texten und besorgen passende Bilder. Sie müssen kein Profi sein – dafür sind wir da.</p></details>
-      <details><summary>Kann ich meine Website später selbst ändern?</summary><p>Ja. Auf Wunsch erhalten Sie eine kurze Einweisung. Oder Sie überlassen die Pflege einfach uns – dann melden Sie Änderungen kurz per E-Mail und wir setzen sie um.</p></details>
-      <details><summary>Ist die Website rechtssicher?</summary><p>Ja. Impressum, Datenschutzerklärung, SSL-Verschlüsselung und ein Cookie-Hinweis (falls nötig) gehören bei uns zum Standard.</p></details>
-    </div>
+<section id="faq" class="section wrap">
+  <div class="kicker">Häufige Fragen</div>
+  <h2 class="h2" style="margin-bottom:36px">Gut zu wissen</h2>
+  <div class="faq">
+    <div><h4>Was kostet mich eine Website wirklich?</h4><p>Das hängt vom Umfang ab. Ein professioneller Auftritt startet bei 490 € einmalig. Nach einem kurzen Gespräch bekommen Sie ein klares Festpreis-Angebot — ohne Überraschungen.</p></div>
+    <div><h4>Wie lange dauert es, bis meine Seite online ist?</h4><p>Ein Starter-Paket ist in der Regel in rund zwei Wochen live, sobald uns Ihre Inhalte vorliegen. Umfangreichere Projekte dauern entsprechend länger.</p></div>
+    <div><h4>Ich habe keine Texte oder Bilder — ein Problem?</h4><p>Überhaupt nicht. Wir unterstützen bei Texten und besorgen passende Bilder. Sie müssen kein Profi sein — dafür sind wir da.</p></div>
+    <div><h4>Kann ich meine Website später selbst ändern?</h4><p>Ja. Auf Wunsch erhalten Sie eine kurze Einweisung — oder Sie überlassen die Pflege einfach uns.</p></div>
+    <div><h4>Ist die Website rechtssicher?</h4><p>Ja. Impressum, Datenschutzerklärung, SSL-Verschlüsselung und ein Cookie-Hinweis (falls nötig) gehören bei uns zum Standard.</p></div>
   </div>
 </section>
 
 <!-- KONTAKT -->
-<section id="kontakt">
-  <div class="wrap">
-    <div class="contact">
-      <h2>Lassen Sie uns über Ihr Projekt sprechen</h2>
-      <p>Kostenlos und unverbindlich. Erzählen Sie uns kurz, was Sie brauchen – wir melden uns zeitnah mit einem konkreten Vorschlag.</p>
-      <a class="btn btn-primary" href="mailto:info@digitalbau-nord.de?subject=Anfrage%20Website">✉ Jetzt anfragen</a>
-      <div class="alt">oder direkt per E-Mail: <span class="ph">info@digitalbau-nord.de</span></div>
-    </div>
+<section id="kontakt" class="contact-sec wrap">
+  <div class="contact blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+    <h2>Lassen Sie uns über Ihr Projekt sprechen</h2>
+    <p class="sub">Kostenlos und unverbindlich. Erzählen Sie uns kurz, was Sie brauchen — wir melden uns zeitnah mit einem konkreten Vorschlag.</p>
+    <a class="btn btn-primary" href="mailto:info@digitalbau-nord.de?subject=Anfrage%20Website" style="padding:14px 26px;font-size:15px">Projekt anfragen <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+    <p class="alt">oder direkt per E-Mail: <a href="mailto:info@digitalbau-nord.de">info@digitalbau-nord.de</a></p>
   </div>
 </section>
+</main>
 
-<footer>
-  <div class="wrap foot-in">
-    <div class="logo"><span class="mark">D</span><span>Digitalbau Nord</span></div>
-    <div class="foot-links">
-      <a href="#leistungen">Leistungen</a>
-      <a href="#preise">Preise</a>
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutz</a>
-    </div>
-    <div>© 2026 Digitalbau Nord</div>
+<footer class="footer wrap">
+  <span class="fb">Digitalbau Nord</span>
+  <div class="footer-links">
+    <a href="#leistungen">Leistungen</a>
+    <a href="#preise">Preise</a>
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
   </div>
+  <span class="copy">© 2026 Digitalbau Nord</span>
 </footer>
 
 </body>

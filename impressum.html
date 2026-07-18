@@ -5,39 +5,48 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Impressum · Digitalbau Nord</title>
 <meta name="robots" content="noindex">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314b88a'/%3E%3Ctext x='16' y='23' font-size='20' font-family='Arial' font-weight='bold' text-anchor='middle' fill='%230e1a16'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2312202b'/%3E%3Crect x='1.5' y='1.5' width='29' height='29' fill='none' stroke='rgba(255,255,255,0.35)' stroke-width='1'/%3E%3Ctext x='16' y='23' font-size='19' font-family='Arial Narrow,Arial' font-weight='bold' text-anchor='middle' fill='%239ec2e6'%3ED%3C/text%3E%3C/svg%3E">
 <style>
-  :root{--bg:#0e1a16;--panel:#132420;--line:#213b34;--ink:#eef6f2;--muted:#9db8ae;--brand:#14b88a;--brand-l:#5fe3bd}
-  *{box-sizing:border-box}
-  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
-  a{color:var(--brand-l);text-decoration:none}
-  a:hover{text-decoration:underline}
-  .wrap{max-width:760px;margin:0 auto;padding:0 22px}
-  header.nav{position:sticky;top:0;backdrop-filter:blur(12px);background:rgba(14,26,22,.82);border-bottom:1px solid var(--line)}
-  .nav-in{display:flex;align-items:center;justify-content:space-between;height:66px;max-width:1140px;margin:0 auto;padding:0 22px}
-  .logo{display:flex;align-items:center;gap:11px;font-weight:800;font-size:19px;color:var(--ink)}
-  .logo:hover{text-decoration:none}
-  .logo .mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--brand),var(--brand-l));display:grid;place-items:center;color:#04120d;font-weight:900;font-size:18px}
-  main{padding:64px 0 80px}
-  h1{font-size:34px;letter-spacing:-.02em;margin:0 0 34px}
-  h2{font-size:19px;margin:34px 0 8px}
-  p{color:var(--muted);margin:0 0 12px}
-  strong{color:var(--ink)}
-  footer{border-top:1px solid var(--line);padding:36px 0 50px;color:var(--muted);font-size:14px}
-  .foot-in{max-width:1140px;margin:0 auto;padding:0 22px;display:flex;flex-wrap:wrap;gap:22px;justify-content:space-between}
-  footer a{color:var(--muted)}
+  @font-face{font-family:'Barlow';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/barlow-400.woff2') format('woff2')}
+  @font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:600;font-display:swap;src:url('assets/fonts/barlow-condensed-600.woff2') format('woff2')}
+  :root{--text:#eaf1f8;--accent-hi:#94bce3;--accent-brand:#9ec2e6;--divider:rgba(255,255,255,0.16);--frame:rgba(255,255,255,0.30);--t72:rgba(234,241,248,0.72);--t60:rgba(234,241,248,0.60);--t55:rgba(234,241,248,0.55)}
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0;font-family:'Barlow',system-ui,sans-serif;font-size:15px;line-height:1.65;color:var(--text);
+    background:linear-gradient(158deg,#274056 0%,#15242f 52%,#0e1922 100%) fixed;background-color:#12202b}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:linear-gradient(rgba(255,255,255,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.05) 1px,transparent 1px);background-size:44px 44px}
+  header,main,footer{position:relative;z-index:1}
+  h1,h2{font-family:'Barlow Condensed',system-ui,sans-serif;font-weight:600;line-height:1.12;letter-spacing:-0.015em;margin:0}
+  a{color:var(--accent-hi);text-decoration:none}
+  a:hover{text-decoration:underline;text-underline-offset:3px}
+  :focus{outline:none}:focus-visible{outline:2px solid #5980a6;outline-offset:2px}
+  .nav{display:flex;align-items:center;gap:13px;padding:22px 48px;border-bottom:1px solid var(--divider);max-width:1360px;margin:0 auto}
+  .mark{position:relative;width:38px;height:38px;display:grid;place-items:center;border:1px solid var(--frame);font-family:'Barlow Condensed';font-weight:600;font-size:21px;color:var(--accent-brand)}
+  .corner{position:absolute;width:11px;height:11px;color:var(--t55)}
+  .corner::before,.corner::after{content:"";position:absolute;background:currentColor}
+  .corner::before{left:5px;top:0;width:1px;height:100%}.corner::after{top:5px;left:0;width:100%;height:1px}
+  .corner.tl{top:-6px;left:-6px}.corner.tr{top:-6px;right:-6px}.corner.bl{bottom:-6px;left:-6px}.corner.br{bottom:-6px;right:-6px}
+  .bn{font-family:'Barlow Condensed';font-weight:600;font-size:18px;color:var(--text)}
+  .back{margin-left:auto;font-size:14px;color:var(--t60)}
+  main{max-width:760px;margin:0 auto;padding:56px 48px 80px}
+  h1{font-size:44px;margin-bottom:34px}
+  h2{font-size:22px;margin:34px 0 8px}
+  p{margin:0 0 12px;color:var(--t72)}
+  strong{color:var(--text)}
+  footer{border-top:1px solid var(--divider);padding:28px 48px;max-width:1360px;margin:0 auto;display:flex;gap:24px;flex-wrap:wrap;font-size:13px;color:var(--t60)}
+  footer a{color:var(--t60)}
+  @media(max-width:700px){.nav{padding:16px 20px}main{padding:36px 20px 60px}h1{font-size:32px}}
 </style>
 </head>
 <body>
 
 <header class="nav">
-  <div class="nav-in">
-    <a class="logo" href="index.html"><span class="mark">D</span><span>Digitalbau Nord</span></a>
-    <a href="index.html" style="color:var(--muted)">← Zur Startseite</a>
-  </div>
+  <a class="mark" href="index.html" aria-label="Zur Startseite"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>D</a>
+  <span class="bn">Digitalbau Nord</span>
+  <a href="index.html" class="back">← Zur Startseite</a>
 </header>
 
-<main class="wrap">
+<main>
   <h1>Impressum</h1>
 
   <h2>Angaben gemäß § 5 DDG</h2>
@@ -57,10 +66,9 @@
 </main>
 
 <footer>
-  <div class="foot-in">
-    <div>© 2026 Digitalbau Nord</div>
-    <div><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></div>
-  </div>
+  <span style="margin-right:auto">© 2026 Digitalbau Nord</span>
+  <a href="impressum.html">Impressum</a>
+  <a href="datenschutz.html">Datenschutz</a>
 </footer>
 
 </body>
