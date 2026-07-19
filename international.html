@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digitalbau Nord · Websites für Auslandsmärkte und Auswanderer</title>
+<meta name="description" content="Websites für deutsche Unternehmen mit Auslandsgeschäft und für Auswanderer – in der Sprache des Zielmarkts oder auf Deutsch, mit passender Länderdomain. Abstimmung durchgehend auf Deutsch.">
+<meta name="theme-color" content="#0d1720">
+<meta name="robots" content="noindex"><!-- ENTWURF: vor Freigabe entfernen -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230d1720'/%3E%3Crect x='1.5' y='1.5' width='29' height='29' fill='none' stroke='rgba(255,255,255,0.35)' stroke-width='1'/%3E%3Ctext x='16' y='23' font-size='19' font-family='Arial Narrow,Arial' font-weight='bold' text-anchor='middle' fill='%239ec2e6'%3ED%3C/text%3E%3C/svg%3E">
+<style>
+  @font-face{font-family:'Barlow';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/barlow-400.woff2') format('woff2')}
+  @font-face{font-family:'Barlow';font-style:normal;font-weight:500;font-display:swap;src:url('assets/fonts/barlow-500.woff2') format('woff2')}
+  @font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/barlow-condensed-400.woff2') format('woff2')}
+  @font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:600;font-display:swap;src:url('assets/fonts/barlow-condensed-600.woff2') format('woff2')}
+
+  :root{
+    --bg:#f2f2f3; --text:#1d1f20; --divider:rgba(29,31,32,0.16);
+    --accent:#5980a6; --accent-100:#eef6ff; --accent-300:#b5d9fd; --accent-400:#94bce3;
+    --accent-600:#597ea3; --accent-700:#416180; --accent-800:#2c455d;
+    --dark-text:#eaf1f8; --dark-ink:#0d1720; --brand:#9ec2e6;
+    --d-divider:rgba(255,255,255,0.14); --d-frame:rgba(255,255,255,0.30);
+    --font-heading:"Barlow Condensed",system-ui,sans-serif;
+    --font-body:"Barlow",system-ui,sans-serif;
+    --maxw:1360px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font-body);font-size:15px;line-height:1.55;color:var(--text);background:var(--bg)}
+  h1,h2,h3,h4{font-family:var(--font-heading);font-weight:600;line-height:1.12;letter-spacing:-0.015em;margin:0}
+  p{margin:0}
+  a{color:inherit;text-decoration:none}
+  :focus{outline:none}:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .shell{max-width:var(--maxw);margin:0 auto;background:var(--bg)}
+  .pad{padding:80px 48px}
+  .kicker{font-family:var(--font-heading);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-700);margin-bottom:12px}
+  .kicker.on-dark{color:var(--accent-400)}
+  .h2{font-size:44px}
+  .muted{color:rgba(29,31,32,0.55)}
+  .metagrid::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+    background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+    background-size:44px 44px}
+  .blueprint{position:relative;border:1px solid var(--divider);border-radius:0}
+  .blueprint.on-dark{border-color:var(--d-frame)}
+  .corner{position:absolute;width:11px;height:11px;color:rgba(29,31,32,0.55)}
+  .on-dark > .corner{color:rgba(234,241,248,0.55)}
+  .corner::before,.corner::after{content:"";position:absolute;background:currentColor}
+  .corner::before{left:5px;top:0;width:1px;height:100%}
+  .corner::after{top:5px;left:0;width:100%;height:1px}
+  .corner.tl{top:-6px;left:-6px}.corner.tr{top:-6px;right:-6px}
+  .corner.bl{bottom:-6px;left:-6px}.corner.br{bottom:-6px;right:-6px}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;cursor:pointer;min-height:46px;
+    font-family:var(--font-heading);font-weight:600;font-size:15px;line-height:1.2;
+    border:1px solid var(--divider);border-radius:0;padding:14px 24px;transition:background .15s,border-color .15s}
+  .btn-primary{background:var(--accent);border-color:var(--accent);color:var(--dark-ink)}
+  .btn-primary:hover{background:var(--accent-600);border-color:var(--accent-600)}
+  .btn-secondary.on-dark{color:var(--dark-text);border-color:var(--d-divider)}
+  .btn-secondary.on-dark:hover{background:rgba(234,241,248,0.08)}
+
+  .nav{display:flex;align-items:center;gap:32px;padding:22px 48px;
+    border-bottom:1px solid var(--d-divider);color:var(--dark-text)}
+  .brand{display:flex;align-items:center;gap:13px;margin-right:auto}
+  .brand-mark{width:38px;height:38px;display:grid;place-items:center;font-family:var(--font-heading);font-weight:600;font-size:21px;color:var(--brand);border:1px solid var(--d-frame)}
+  .brand-name{font-family:var(--font-heading);font-weight:600;font-size:18px;display:block;line-height:1.1}
+  .brand-sub{font-size:11px;letter-spacing:.04em;color:rgba(234,241,248,0.6)}
+  .nav-links{display:flex;gap:26px;font-size:14px}
+  .nav-links a:hover{color:var(--accent-400)}
+
+  .hero-wrap{position:relative;color:var(--dark-text);
+    background:radial-gradient(125% 100% at 18% -10%,#33546f 0%,#1a2b39 46%,#0d1720 100%)}
+  .hero{position:relative;padding:80px 48px 88px;max-width:960px}
+  .chip{display:inline-flex;align-items:center;font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+    font-family:var(--font-heading);padding:5px 12px;border:1px solid var(--d-frame);color:var(--accent-400);margin-bottom:26px}
+  .hero h1{font-size:70px;line-height:1;letter-spacing:-.025em;margin-bottom:24px}
+  .hero h1 em{font-style:normal;color:var(--accent-400)}
+  .lede{font-size:19px;line-height:1.55;color:rgba(234,241,248,0.82);max-width:60ch;margin-bottom:30px}
+
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:44px}
+  .fall{padding:32px 34px}
+  .fall .nr{font-family:var(--font-heading);font-size:13px;letter-spacing:.12em;color:var(--accent);margin-bottom:10px}
+  .fall h3{font-size:28px;margin-bottom:12px}
+  .fall p{color:rgba(29,31,32,0.72);margin-bottom:16px}
+  .fall .bsp{font-size:14.5px;padding:14px 16px;background:var(--accent-100);border-left:3px solid var(--accent-400);color:var(--accent-800)}
+
+  .band{position:relative;color:var(--dark-text);padding:72px 48px;
+    background:radial-gradient(120% 130% at 82% 0%,#33546f,#0d1720 62%)}
+  .band h2{font-size:38px;margin-bottom:16px}
+  .teilung{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:32px}
+  .teilung .sp{padding:26px 28px}
+  .teilung h4{font-size:20px;margin-bottom:14px;color:var(--accent-400)}
+  .teilung li{list-style:none;padding-left:22px;position:relative;margin-bottom:10px;color:rgba(234,241,248,.84);font-size:15px}
+  .teilung li::before{content:"";position:absolute;left:0;top:8px;width:9px;height:1px;background:var(--accent-400)}
+  .teilung ul{margin:0;padding:0}
+
+  .laender{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+  .tld{font-family:var(--font-heading);font-weight:600;font-size:16px;letter-spacing:.02em;
+    padding:9px 16px;border:1px solid var(--divider);background:#fff;color:var(--accent-800)}
+  .tld span{color:rgba(29,31,32,0.45);font-weight:400;font-size:13px;margin-left:7px}
+
+  .preis-zeile{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--divider);margin-top:30px}
+  .preis-zelle{background:var(--bg);padding:24px 26px}
+  .preis-zelle .p{font-family:var(--font-heading);font-weight:600;font-size:34px;color:var(--accent-700);line-height:1}
+  .preis-zelle .p span{font-size:15px;color:rgba(29,31,32,0.5);margin-left:5px}
+  .preis-zelle h4{font-size:19px;margin:12px 0 6px}
+  .preis-zelle p{font-size:14.5px;color:rgba(29,31,32,0.62)}
+
+  .faq{display:grid;grid-template-columns:1fr 1fr;gap:30px 44px;margin-top:36px}
+  .faq h4{font-size:19px;margin-bottom:8px}
+  .faq p{color:rgba(29,31,32,0.7);font-size:15px}
+
+  .kontakt{position:relative;color:var(--dark-text);padding:88px 48px;text-align:center;
+    background:radial-gradient(120% 120% at 80% 0%,#33546f,#0d1720 60%)}
+  .kontakt h2{font-size:46px;margin:0 auto 16px;max-width:22ch}
+  .kontakt .sub{margin:0 auto 28px;color:rgba(234,241,248,0.78);max-width:56ch}
+  .kontakt .mail{margin-top:22px;font-size:15px;color:rgba(234,241,248,0.8)}
+  .kontakt .mail a{color:var(--accent-400);border-bottom:1px solid rgba(148,188,227,.4)}
+
+  footer{border-top:1px solid var(--divider);padding:28px 48px;max-width:var(--maxw);margin:0 auto;
+    display:flex;gap:24px;flex-wrap:wrap;font-size:13px;color:rgba(29,31,32,0.55)}
+  footer a:hover{color:var(--text)}
+
+  @media(max-width:900px){
+    .pad,.band,.kontakt{padding:52px 20px}
+    .hero{padding:52px 20px 60px}
+    .hero h1{font-size:42px}
+    .h2{font-size:32px}
+    .zwei,.teilung,.faq{grid-template-columns:1fr}
+    .preis-zeile{grid-template-columns:1fr}
+    .nav{padding:16px 20px;gap:16px;flex-wrap:wrap}
+    .nav-links{width:100%;gap:18px}
+    footer{padding:24px 20px}
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+<div class="hero-wrap metagrid">
+  <header class="nav">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">D</span>
+      <span><span class="brand-name">Digitalbau Nord</span><span class="brand-sub">Region Hamburg</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html">Übersicht</a>
+      <a href="#faelle">Zwei Wege</a>
+      <a href="#preise">Preise</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <span class="chip">Auslandsgeschäft &amp; Auswanderer</span>
+    <h1>Eine Website für den Markt,<br>in dem Sie <em>arbeiten.</em></h1>
+    <p class="lede">Ob polnische Seite für Ihre Spedition, spanische Domain für Ihren Betrieb auf Mallorca oder englischer Auftritt für die Niederlassung — wir bauen sie. Die Abstimmung läuft dabei durchgehend auf Deutsch, schriftlich, ohne Termine.</p>
+    <a class="btn btn-primary" href="#kontakt">Projekt anfragen</a>
+    <a class="btn btn-secondary on-dark" href="#faelle" style="margin-left:10px">Wie das aussieht</a>
+  </section>
+</div>
+
+<section id="faelle" class="pad">
+  <div class="kicker">Zwei Wege</div>
+  <h2 class="h2">Zwei Fälle, die wir gut kennen</h2>
+  <div class="zwei">
+    <div class="fall blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <div class="nr">01</div>
+      <h3>Deutsches Unternehmen,<br>ausländischer Markt</h3>
+      <p>Sie sitzen in Deutschland und wollen dort gefunden werden, wo Ihre Kunden sind. Die Seite entsteht in der Sprache des Zielmarkts, unter der passenden Landesdomain — besprochen wird alles auf Deutsch.</p>
+      <div class="bsp">Spedition aus Hamburg, die polnische Auftraggeber gewinnen will: polnische Seite unter <strong>.pl</strong>, Kontaktweg und Formular in Landessprache.</div>
+    </div>
+    <div class="fall blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <div class="nr">02</div>
+      <h3>Deutscher Betrieb<br>im Ausland</h3>
+      <p>Sie sind ausgewandert und arbeiten überwiegend für deutschsprachige Kunden vor Ort. Dann bleibt die Seite deutsch — nur die Domain zeigt, wo Sie sind.</p>
+      <div class="bsp">Handwerker auf Mallorca mit deutscher Kundschaft: deutsche Seite unter <strong>.es</strong>, damit Ihre Kunden sofort sehen, dass Sie vor Ort sind.</div>
+    </div>
+  </div>
+</section>
+
+<section class="band metagrid">
+  <div class="kicker on-dark">Klare Aufteilung</div>
+  <h2>Wer was beisteuert</h2>
+  <p style="color:rgba(234,241,248,.78);max-width:62ch">Bei fremdsprachigen Seiten ist entscheidend, dass jeder das übernimmt, was er wirklich beurteilen kann. Deshalb sagen wir es vorher.</p>
+  <div class="teilung">
+    <div class="sp blueprint on-dark"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <h4>Das machen wir</h4>
+      <ul>
+        <li>Aufbau, Gestaltung und Technik der Seite</li>
+        <li>Übersetzung der Inhalte in die Zielsprache</li>
+        <li>Domain registrieren und einrichten</li>
+        <li>Sprachwahl, Kontaktformular, Sichtbarkeit bei Google</li>
+        <li>Einbindung Ihrer Rechtstexte an der richtigen Stelle</li>
+        <li>Prüfung vor dem Livegang: Links, Bilder, Darstellung, Ladezeit</li>
+      </ul>
+    </div>
+    <div class="sp blueprint on-dark"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+      <h4>Das kommt von Ihnen</h4>
+      <ul>
+        <li>Freigabe der übersetzten Texte — Sie oder Ihre Leute vor Ort kennen die Fachbegriffe Ihrer Branche im Zielmarkt</li>
+        <li>Impressum und Datenschutz nach dem Recht des Ziellands, von Ihrem Anwalt oder einem Rechtstexte-Dienst</li>
+        <li>Angaben zum Unternehmen, die ins Impressum gehören</li>
+      </ul>
+      <p style="font-size:14px;color:rgba(234,241,248,.55);margin-top:16px">Wir beraten nicht rechtlich und dürfen das auch nicht — im Ausland so wenig wie in Deutschland.</p>
+    </div>
+  </div>
+</section>
+
+<section class="pad" style="padding-top:64px">
+  <div class="kicker">Domains</div>
+  <h2 class="h2">Die Endung zeigt, wo Sie zu Hause sind</h2>
+  <p class="muted" style="max-width:60ch;margin-top:14px">Wir übernehmen Registrierung und Einrichtung. Manche Länder verlangen dafür einen Wohn- oder Firmensitz vor Ort — was in Ihrem Fall gilt, klären wir vor dem Angebot.</p>
+  <div class="laender">
+    <span class="tld">.pl <span>Polen</span></span>
+    <span class="tld">.es <span>Spanien</span></span>
+    <span class="tld">.nl <span>Niederlande</span></span>
+    <span class="tld">.at <span>Österreich</span></span>
+    <span class="tld">.ch <span>Schweiz</span></span>
+    <span class="tld">.cz <span>Tschechien</span></span>
+    <span class="tld">.dk <span>Dänemark</span></span>
+    <span class="tld">.it <span>Italien</span></span>
+    <span class="tld">.fr <span>Frankreich</span></span>
+    <span class="tld">.pt <span>Portugal</span></span>
+    <span class="tld">.se <span>Schweden</span></span>
+    <span class="tld">.hu <span>Ungarn</span></span>
+    <span class="tld">.eu <span>Europa</span></span>
+    <span class="tld">.com <span>international</span></span>
+  </div>
+</section>
+
+<section id="preise" class="pad" style="padding-top:24px">
+  <div class="kicker">Preise</div>
+  <h2 class="h2">Aufbau wie gewohnt, plus Sprache</h2>
+  <p class="muted" style="max-width:62ch;margin-top:14px">Die Pakete sind dieselben wie für deutsche Auftritte. Dazu kommt, was die fremde Sprache tatsächlich kostet — Übersetzung, zweite Sprachfassung, Landesdomain.</p>
+  <div class="preis-zeile">
+    <div class="preis-zelle">
+      <div class="p">+490 €<span>je Sprache</span></div>
+      <h4>Zielsprache</h4>
+      <p>Vollständige Übersetzung aller Seiteninhalte, eingebaut und geprüft. Sie geben die Fassung frei, bevor sie live geht.</p>
+    </div>
+    <div class="preis-zelle">
+      <div class="p">+290 €<span>einmalig</span></div>
+      <h4>Zweisprachig</h4>
+      <p>Umschalter zwischen zwei Sprachfassungen, saubere Trennung für Google, richtige Startsprache je nach Besucher.</p>
+    </div>
+    <div class="preis-zelle">
+      <div class="p">ab 25 €<span>im Jahr</span></div>
+      <h4>Landesdomain</h4>
+      <p>Registrierung und Einrichtung. Die Jahresgebühr unterscheidet sich je Land und wird durchgereicht, ohne Aufschlag.</p>
+    </div>
+  </div>
+  <p class="muted" style="font-size:13.5px;margin-top:22px;max-width:70ch">Grundpakete: Starter ab 990 €, Business ab 2.900 €, Relaunch ab 1.890 € — siehe <a href="index.html#preise" style="border-bottom:1px solid var(--divider)">Übersicht</a>. Alle Preise netto zzgl. Umsatzsteuer. Bei Kunden mit Sitz im EU-Ausland stellen wir ohne deutsche Umsatzsteuer, mit Hinweis auf die Steuerschuldnerschaft des Leistungsempfängers — dafür brauchen wir Ihre Umsatzsteuer-Identifikationsnummer.</p>
+</section>
+
+<section class="pad" style="padding-top:24px">
+  <div class="kicker">Häufige Fragen</div>
+  <h2 class="h2">Gut zu wissen</h2>
+  <div class="faq">
+    <div>
+      <h4>Sprechen Sie meine Zielsprache?</h4>
+      <p>Für die Übersetzung arbeiten wir mit maschineller Übersetzung auf heutigem Stand und lassen sie von Ihnen gegenlesen. Ihre Leute vor Ort kennen die Branchenbegriffe besser als jeder Übersetzer — deshalb liegt die Freigabe bei Ihnen. Das ist ehrlicher als zu behaupten, wir wären in zwölf Sprachen zu Hause.</p>
+    </div>
+    <div>
+      <h4>Wie läuft die Abstimmung?</h4>
+      <p>Vollständig auf Deutsch und schriftlich per E-Mail — genau wie bei einem Auftrag in Hamburg. Zeitverschiebung und Entfernung spielen dabei keine Rolle; Sie schreiben, wann es Ihnen passt.</p>
+    </div>
+    <div>
+      <h4>Was ist mit Impressum und Datenschutz im Ausland?</h4>
+      <p>Die Vorgaben unterscheiden sich je Land — Österreich verlangt anderes als Deutschland, die Schweiz wieder anderes. Wir binden die Texte technisch sauber ein; erstellen und prüfen muss sie ein Anwalt oder ein Rechtstexte-Dienst des jeweiligen Landes. Diese Grenze halten wir strikt ein.</p>
+    </div>
+    <div>
+      <h4>Kann ich die Domain behalten, wenn wir uns trennen?</h4>
+      <p>Ja. Die Domain wird auf Sie registriert, nicht auf uns. Sie können sie jederzeit zu einem anderen Anbieter mitnehmen — dasselbe gilt für alle Inhalte Ihrer Seite.</p>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt" class="kontakt metagrid">
+  <h2>Erzählen Sie uns von Ihrem Markt</h2>
+  <p class="sub">Schreiben Sie in Stichpunkten, worum es geht: welches Land, welche Sprache, welche Kunden. Wir melden uns mit Rückfragen und einem Festpreis-Angebot.</p>
+  <a class="btn btn-primary" href="index.html#kontakt">Zum Anfrageformular</a>
+  <p class="mail">oder direkt an <a href="mailto:info@digitalbau-nord.de">info@digitalbau-nord.de</a></p>
+</section>
+
+<footer>
+  <span style="margin-right:auto">© 2026 Digitalbau Nord</span>
+  <a href="index.html">Übersicht</a>
+  <a href="impressum.html">Impressum</a>
+  <a href="datenschutz.html">Datenschutz</a>
+</footer>
+
+</div>
+</body>
+</html>
