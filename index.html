@@ -234,6 +234,33 @@
   /* Honigtopf: für Menschen unsichtbar, für Formularroboter verlockend.
      Kein display:none — manche Bots überspringen ausgeblendete Felder. */
   .cf-trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+  /* ── Sprachnachricht ──────────────────────────────────────────────── */
+  /* Wird per JS eingeblendet — nur wenn Endpunkt konfiguriert UND Browser fähig.
+     Ein Aufnahmeknopf ohne funktionierenden Versand wäre schlimmer als keiner. */
+  .cf-voice{display:none;border:1px solid var(--d-frame);padding:18px 20px;margin-bottom:14px}
+  .cf-voice.an{display:block}
+  .cf-voice-kopf{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .cf-voice-kopf strong{font-family:var(--font-heading);font-size:15px;letter-spacing:.02em}
+  .cf-voice-hint{font-size:13px;color:rgba(234,241,248,.55);line-height:1.5}
+  /* min-height 46px: Der Knopf wird auf der Baustelle mit dem Daumen getroffen,
+     nicht mit der Maus — unter 44px wird das unzuverlässig. */
+  .cf-rec{display:inline-flex;align-items:center;gap:9px;cursor:pointer;min-height:46px;
+    font-family:var(--font-heading);font-weight:600;font-size:15px;
+    padding:12px 20px;border:1px solid var(--accent-400);background:transparent;color:var(--dark-text)}
+  .cf-rec:hover{background:rgba(148,188,227,.12)}
+  .cf-rec .punkt{width:11px;height:11px;border-radius:50%;background:#e06c60;flex:none}
+  .cf-rec.laeuft{border-color:#e06c60}
+  .cf-rec.laeuft .punkt{animation:puls 1.1s ease-in-out infinite}
+  @keyframes puls{0%,100%{opacity:1}50%{opacity:.25}}
+  @media(prefers-reduced-motion:reduce){.cf-rec.laeuft .punkt{animation:none}}
+  .cf-uhr{font-variant-numeric:tabular-nums;font-size:14px;color:rgba(234,241,248,.75)}
+  .cf-voice-fertig{display:none;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px}
+  .cf-voice-fertig.an{display:flex}
+  .cf-voice-fertig audio{height:38px;max-width:100%}
+  .cf-verwerfen{background:none;border:none;color:rgba(234,241,248,.6);cursor:pointer;
+    font-size:13.5px;text-decoration:underline;padding:4px}
+  .cf-verwerfen:hover{color:var(--dark-text)}
   .cf-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:20px}
   .cf-hint{font-size:12.5px;color:rgba(234,241,248,.5);max-width:46ch;margin-top:14px}
   .cf-hint a{color:var(--accent-400);border-bottom:1px solid rgba(148,188,227,.4)}
@@ -564,8 +591,23 @@
         </div>
       </div>
 
+      <div class="cf-voice" id="cf-voice">
+        <div class="cf-voice-kopf">
+          <strong>Lieber sprechen als tippen?</strong>
+        </div>
+        <p class="cf-voice-hint">Nehmen Sie einfach auf, wie Sie es einem Bekannten erzählen würden — zwei Minuten reichen. Wir schreiben es mit, Sie müssen nichts formulieren.<br>Bitte an einem möglichst ruhigen Ort aufnehmen.</p>
+        <div class="cf-voice-kopf" style="margin:14px 0 0">
+          <button type="button" class="cf-rec" id="cf-rec"><span class="punkt"></span><span id="cf-rec-text">Aufnahme starten</span></button>
+          <span class="cf-uhr" id="cf-uhr" hidden>0:00</span>
+        </div>
+        <div class="cf-voice-fertig" id="cf-voice-fertig">
+          <audio id="cf-audio" controls></audio>
+          <button type="button" class="cf-verwerfen" id="cf-verwerfen">verwerfen und neu aufnehmen</button>
+        </div>
+      </div>
+
       <div class="cf-field">
-        <label for="cf-text">Ihr Projekt</label>
+        <label for="cf-text">Ihr Projekt <span class="opt" id="cf-text-opt" hidden>— oder sprechen Sie oben</span></label>
         <textarea id="cf-text" name="nachricht" required placeholder="Erzählen Sie kurz, worum es geht — Stichpunkte genügen völlig. Zum Beispiel: was Ihr Betrieb macht, was Ihnen an der jetzigen Lösung fehlt, bis wann es fertig sein soll."></textarea>
       </div>
 
@@ -659,6 +701,108 @@
     var button = form.querySelector('button[type=submit]');
     var geladen = Date.now();
 
+    /* ── Sprachnachricht ──────────────────────────────────────────────────
+       Der Aufnahmeknopf erscheint NUR, wenn beides stimmt: Endpunkt konfiguriert
+       und Browser kann aufnehmen. Ohne Endpunkt greift der mailto-Rückfall, und
+       eine E-Mail kann die Aufnahme nicht mitnehmen — zwei Minuten sprechen und
+       dann ein leeres Mailfenster zu sehen, wäre der schlechteste Fall.
+       Aufnahme braucht außerdem HTTPS; auf iOS zusätzlich eine echte Nutzergeste,
+       deshalb steht getUserMedia im Klick-Handler und nicht im Seitenaufbau.  ── */
+    var aufnahme = { blob: null, mime: null, sekunden: 0 };
+    var MAX_SEK = 300;
+
+    function mimeWaehlen() {
+      if (typeof MediaRecorder === 'undefined' || !MediaRecorder.isTypeSupported) return null;
+      var kandidaten = ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4;codecs=mp4a.40.2', 'audio/mp4', 'audio/ogg;codecs=opus'];
+      for (var i = 0; i < kandidaten.length; i++) {
+        if (MediaRecorder.isTypeSupported(kandidaten[i])) return kandidaten[i];
+      }
+      return '';   // leer = Browser entscheidet selbst
+    }
+
+    var voiceBox = document.getElementById('cf-voice');
+    var kannAufnehmen = !!(ENDPUNKT && navigator.mediaDevices && navigator.mediaDevices.getUserMedia &&
+                           typeof MediaRecorder !== 'undefined');
+    if (kannAufnehmen) {
+      voiceBox.classList.add('an');
+      document.getElementById('cf-text-opt').hidden = false;
+      form.elements.nachricht.required = false;
+      voiceEinrichten();
+    }
+
+    function voiceEinrichten() {
+      var knopf = document.getElementById('cf-rec');
+      var knopfText = document.getElementById('cf-rec-text');
+      var uhr = document.getElementById('cf-uhr');
+      var fertig = document.getElementById('cf-voice-fertig');
+      var player = document.getElementById('cf-audio');
+      var rec = null, spur = null, teile = [], ticker = null, start = 0;
+
+      function uhrzeit(s) { return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2); }
+
+      function stoppen() {
+        if (rec && rec.state !== 'inactive') rec.stop();
+        if (spur) spur.getTracks().forEach(function (t) { t.stop() });
+        clearInterval(ticker);
+        knopf.classList.remove('laeuft');
+        knopfText.textContent = 'Aufnahme starten';
+      }
+
+      knopf.addEventListener('click', function () {
+        if (rec && rec.state === 'recording') { stoppen(); return; }
+
+        navigator.mediaDevices.getUserMedia({ audio: true }).then(function (s) {
+          spur = s; teile = [];
+          var mime = mimeWaehlen();
+          var opt = { audioBitsPerSecond: 32000 };   // Gemini rechnet ohnehin herunter
+          if (mime) opt.mimeType = mime;
+          rec = new MediaRecorder(s, opt);
+
+          rec.ondataavailable = function (e) { if (e.data && e.data.size) teile.push(e.data); };
+          rec.onstop = function () {
+            // Den TATSÄCHLICH verwendeten Typ nehmen, nicht den gewünschten — und den
+            // codecs-Zusatz abschneiden, damit der Typ serverseitig eindeutig bleibt.
+            var typ = (rec.mimeType || 'audio/webm').split(';')[0].trim();
+            aufnahme.blob = new Blob(teile, { type: typ });
+            aufnahme.mime = typ;
+            aufnahme.sekunden = Math.round((Date.now() - start) / 1000);
+            player.src = URL.createObjectURL(aufnahme.blob);
+            fertig.classList.add('an');
+            uhr.hidden = true;
+          };
+
+          rec.start();
+          start = Date.now();
+          fertig.classList.remove('an');
+          knopf.classList.add('laeuft');
+          knopfText.textContent = 'Aufnahme beenden';
+          uhr.hidden = false; uhr.textContent = '0:00';
+          ticker = setInterval(function () {
+            var s2 = Math.round((Date.now() - start) / 1000);
+            uhr.textContent = uhrzeit(s2);
+            if (s2 >= MAX_SEK) { stoppen(); melde('Die Aufnahme wurde nach fünf Minuten beendet. Das genügt uns völlig.', true); }
+          }, 1000);
+        }).catch(function () {
+          melde('Wir konnten nicht auf das Mikrofon zugreifen. Bitte die Freigabe erlauben — oder schreiben Sie uns einfach ins Feld darunter.', false);
+        });
+      });
+
+      document.getElementById('cf-verwerfen').addEventListener('click', function () {
+        aufnahme = { blob: null, mime: null, sekunden: 0 };
+        fertig.classList.remove('an');
+        player.removeAttribute('src');
+      });
+    }
+
+    function blobAlsBase64(blob) {
+      return new Promise(function (aufloesen, ablehnen) {
+        var leser = new FileReader();
+        leser.onload = function () { aufloesen(String(leser.result).split(',')[1] || ''); };
+        leser.onerror = function () { ablehnen(new Error('Aufnahme nicht lesbar')); };
+        leser.readAsDataURL(blob);
+      });
+    }
+
     function melde(text, artOk) {
       status.className = 'cf-status ' + (artOk ? 'ok' : 'err');
       status.innerHTML = text;
@@ -681,9 +825,16 @@
         + '?subject=' + encodeURIComponent('Anfrage Website — ' + daten.name)
         + '&body=' + encodeURIComponent(alsText(daten));
       window.location.href = url;
-      melde('Ihr E-Mail-Programm wurde geöffnet — bitte dort noch auf „Senden" klicken. '
+      var hinweis = 'Ihr E-Mail-Programm wurde geöffnet — bitte dort noch auf „Senden" klicken. '
         + 'Falls sich nichts tut, schreiben Sie uns direkt an '
-        + '<a href="mailto:info@digitalbau-nord.de">info@digitalbau-nord.de</a>.', true);
+        + '<a href="mailto:info@digitalbau-nord.de">info@digitalbau-nord.de</a>.';
+      // Eine E-Mail kann die Aufnahme nicht mitnehmen. Das muss dastehen, sonst glaubt
+      // der Kunde, seine Sprachnachricht sei unterwegs.
+      if (aufnahme.blob) {
+        hinweis += '<br><br><strong>Ihre Aufnahme konnte nicht mitgeschickt werden.</strong> '
+          + 'Bitte hängen Sie sie in der E-Mail an — oder schreiben Sie kurz, worum es geht.';
+      }
+      melde(hinweis, true);
     }
 
     form.addEventListener('submit', function (e) {
@@ -703,8 +854,11 @@
         sekunden: Math.round((Date.now() - geladen) / 1000)
       };
 
-      if (!daten.name || !daten.email || !daten.nachricht) {
-        melde('Bitte füllen Sie Name, E-Mail und Ihr Projekt aus — mehr brauchen wir nicht.', false);
+      var hatAudio = !!aufnahme.blob;
+      if (!daten.name || !daten.email || (!daten.nachricht && !hatAudio)) {
+        melde(hatAudio
+          ? 'Bitte tragen Sie noch Name und E-Mail ein — Ihre Aufnahme ist gespeichert.'
+          : 'Bitte füllen Sie Name, E-Mail und Ihr Projekt aus — mehr brauchen wir nicht.', false);
         return;
       }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(daten.email)) {
@@ -718,19 +872,45 @@
 
       button.disabled = true;
       var alterInhalt = button.innerHTML;   // enthaelt den Pfeil-SVG — textContent wuerde ihn loeschen
-      button.textContent = 'Wird gesendet …';
+      button.textContent = hatAudio ? 'Aufnahme wird übertragen …' : 'Wird gesendet …';
 
-      fetch(ENDPUNKT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(daten)
+      // Aufnahme anhängen, falls vorhanden. Erst danach senden — sonst ginge die
+      // Nachricht ohne den eigentlichen Inhalt raus.
+      var vorbereitet = hatAudio
+        ? blobAlsBase64(aufnahme.blob).then(function (b64) {
+            daten.audio = { data: b64, mime: aufnahme.mime, sekunden: aufnahme.sekunden };
+            return daten;
+          })
+        : Promise.resolve(daten);
+
+      vorbereitet.then(function (nutzlast) {
+        return fetch(ENDPUNKT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(nutzlast)
+        });
       }).then(function (r) {
         return r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status));
       }).then(function (antwort) {
         if (!antwort || antwort.ok !== true) throw new Error('abgelehnt');
         form.reset();
-        melde('Danke — Ihre Anfrage ist angekommen. Wir melden uns Mo–Fr zwischen 8 und 18 Uhr, '
-          + 'in der Regel innerhalb weniger Stunden.', true);
+        aufnahme = { blob: null, mime: null, sekunden: 0 };
+        var box = document.getElementById('cf-voice-fertig');
+        if (box) box.classList.remove('an');
+
+        var text = 'Danke — Ihre Anfrage ist angekommen. Wir melden uns Mo–Fr zwischen 8 und 18 Uhr, '
+                 + 'in der Regel innerhalb weniger Stunden.';
+        // Wer gesprochen hat, soll sehen, was verstanden wurde. Eine Bestätigung ohne
+        // Inhalt lässt offen, ob die Aufnahme überhaupt etwas hergab.
+        if (antwort.transkript) {
+          text += '<br><br><strong>Das haben wir verstanden:</strong><br>'
+                + '<span style="opacity:.85">' + String(antwort.transkript)
+                    .replace(/[<>&]/g, function (z) { return { '<': '&lt;', '>': '&gt;', '&': '&amp;' }[z]; })
+                    .slice(0, 900) + '</span>'
+                + '<br><br>Fehlt etwas? Schreiben Sie uns einfach an '
+                + '<a href="mailto:info@digitalbau-nord.de">info@digitalbau-nord.de</a>.';
+        }
+        melde(text, true);
       }).catch(function () {
         // Nicht kommentarlos scheitern: der Kunde soll seine Nachricht nicht verlieren.
         mailtoFallback(daten);
