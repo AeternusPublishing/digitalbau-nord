@@ -5,46 +5,50 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Datenschutzerklärung · Digitalbau Nord</title>
 <meta name="robots" content="noindex">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2312202b'/%3E%3Crect x='1.5' y='1.5' width='29' height='29' fill='none' stroke='rgba(255,255,255,0.35)' stroke-width='1'/%3E%3Ctext x='16' y='23' font-size='19' font-family='Arial Narrow,Arial' font-weight='bold' text-anchor='middle' fill='%239ec2e6'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230d1720'/%3E%3Crect x='1.5' y='1.5' width='29' height='29' fill='none' stroke='rgba(255,255,255,0.35)' stroke-width='1'/%3E%3Ctext x='16' y='23' font-size='19' font-family='Arial Narrow,Arial' font-weight='bold' text-anchor='middle' fill='%239ec2e6'%3ED%3C/text%3E%3C/svg%3E">
 <style>
   @font-face{font-family:'Barlow';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/barlow-400.woff2') format('woff2')}
   @font-face{font-family:'Barlow Condensed';font-style:normal;font-weight:600;font-display:swap;src:url('assets/fonts/barlow-condensed-600.woff2') format('woff2')}
-  :root{--text:#eaf1f8;--accent-hi:#94bce3;--accent-brand:#9ec2e6;--divider:rgba(255,255,255,0.16);--frame:rgba(255,255,255,0.30);--t72:rgba(234,241,248,0.72);--t60:rgba(234,241,248,0.60);--t55:rgba(234,241,248,0.55)}
+  :root{--bg:#f2f2f3;--text:#1d1f20;--divider:rgba(29,31,32,0.16);--accent:#5980a6;--accent-100:#eef6ff;--accent-700:#416180;
+    --dark-text:#eaf1f8;--dark-ink:#0d1720;--brand:#9ec2e6;--d-divider:rgba(255,255,255,0.14);--d-frame:rgba(255,255,255,0.30)}
   *,*::before,*::after{box-sizing:border-box}
-  body{margin:0;font-family:'Barlow',system-ui,sans-serif;font-size:15px;line-height:1.65;color:var(--text);
-    background:linear-gradient(158deg,#274056 0%,#15242f 52%,#0e1922 100%) fixed;background-color:#12202b}
-  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
-    background-image:linear-gradient(rgba(255,255,255,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.05) 1px,transparent 1px);background-size:44px 44px}
-  header,main,footer{position:relative;z-index:1}
+  body{margin:0;font-family:'Barlow',system-ui,sans-serif;font-size:15px;line-height:1.65;color:var(--text);background:var(--bg)}
   h1,h2{font-family:'Barlow Condensed',system-ui,sans-serif;font-weight:600;line-height:1.12;letter-spacing:-0.015em;margin:0}
-  a{color:var(--accent-hi);text-decoration:none}
+  a{color:var(--accent-700);text-decoration:none}
   a:hover{text-decoration:underline;text-underline-offset:3px}
-  :focus{outline:none}:focus-visible{outline:2px solid #5980a6;outline-offset:2px}
-  .nav{display:flex;align-items:center;gap:13px;padding:22px 48px;border-bottom:1px solid var(--divider);max-width:1360px;margin:0 auto}
-  .mark{position:relative;width:38px;height:38px;display:grid;place-items:center;border:1px solid var(--frame);font-family:'Barlow Condensed';font-weight:600;font-size:21px;color:var(--accent-brand)}
-  .corner{position:absolute;width:11px;height:11px;color:var(--t55)}
+  :focus{outline:none}:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .shell{max-width:1360px;margin:0 auto;background:var(--bg)}
+  .navband{position:relative;color:var(--dark-text);background:radial-gradient(125% 160% at 18% -40%,#33546f 0%,#1a2b39 46%,#0d1720 100%)}
+  .navband::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+    background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:44px 44px}
+  .nav{position:relative;display:flex;align-items:center;gap:13px;padding:22px 48px;border-bottom:1px solid var(--d-divider)}
+  .mark{position:relative;width:38px;height:38px;display:grid;place-items:center;border:1px solid var(--d-frame);font-family:'Barlow Condensed';font-weight:600;font-size:21px;color:var(--brand)}
+  .corner{position:absolute;width:11px;height:11px;color:rgba(234,241,248,.55)}
   .corner::before,.corner::after{content:"";position:absolute;background:currentColor}
   .corner::before{left:5px;top:0;width:1px;height:100%}.corner::after{top:5px;left:0;width:100%;height:1px}
   .corner.tl{top:-6px;left:-6px}.corner.tr{top:-6px;right:-6px}.corner.bl{bottom:-6px;left:-6px}.corner.br{bottom:-6px;right:-6px}
-  .bn{font-family:'Barlow Condensed';font-weight:600;font-size:18px;color:var(--text)}
-  .back{margin-left:auto;font-size:14px;color:var(--t60)}
-  main{max-width:760px;margin:0 auto;padding:56px 48px 80px}
-  h1{font-size:44px;margin-bottom:34px}
-  h2{font-size:22px;margin:34px 0 8px}
-  p{margin:0 0 12px;color:var(--t72)}
+  .bn{font-family:'Barlow Condensed';font-weight:600;font-size:18px;color:var(--dark-text)}
+  .back{margin-left:auto;font-size:14px;color:rgba(234,241,248,.6)}
+  .back:hover{color:var(--dark-text);text-decoration:none}
+  main{max-width:760px;margin:0 auto;padding:64px 48px 80px}
+  h1{font-size:52px;margin-bottom:36px}
+  h2{font-size:22px;margin:36px 0 8px}
+  p{margin:0 0 12px;color:rgba(29,31,32,0.7)}
   strong{color:var(--text)}
-  footer{border-top:1px solid var(--divider);padding:28px 48px;max-width:1360px;margin:0 auto;display:flex;gap:24px;flex-wrap:wrap;font-size:13px;color:var(--t60)}
-  footer a{color:var(--t60)}
-  @media(max-width:700px){.nav{padding:16px 20px}main{padding:36px 20px 60px}h1{font-size:32px}}
+  footer{border-top:1px solid var(--divider);padding:28px 48px;max-width:1360px;margin:0 auto;display:flex;gap:24px;flex-wrap:wrap;font-size:13px;color:rgba(29,31,32,0.55)}
+  @media(max-width:700px){.nav{padding:16px 20px}main{padding:40px 20px 60px}h1{font-size:34px}footer{padding:24px 20px}}
 </style>
 </head>
 <body>
 
-<header class="nav">
-  <a class="mark" href="index.html" aria-label="Zur Startseite"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>D</a>
-  <span class="bn">Digitalbau Nord</span>
-  <a href="index.html" class="back">← Zur Startseite</a>
-</header>
+<div class="shell">
+<div class="navband">
+  <header class="nav">
+    <a class="mark" href="index.html" aria-label="Zur Startseite"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>D</a>
+    <span class="bn">Digitalbau Nord</span>
+    <a href="index.html" class="back">← Zur Startseite</a>
+  </header>
+</div>
 
 <main>
   <h1>Datenschutzerklärung</h1>
@@ -63,7 +67,9 @@
   <p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der sicheren und effizienten Bereitstellung der Website). GitHub ist unter dem EU-U.S. Data Privacy Framework zertifiziert. Weitere Informationen: <a href="https://docs.github.com/de/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener">Datenschutzerklärung von GitHub</a>.</p>
 
   <h2>4. Kontaktaufnahme per E-Mail</h2>
-  <p>Wenn Sie uns per E-Mail kontaktieren, werden die von Ihnen übermittelten Daten (E-Mail-Adresse, Inhalt der Nachricht) zur Bearbeitung Ihrer Anfrage verarbeitet (Art. 6 Abs. 1 lit. b DSGVO, vorvertragliche Maßnahmen bzw. Vertragserfüllung). Die Daten werden gelöscht, sobald sie für die Bearbeitung nicht mehr erforderlich sind und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
+  <p>Der gesamte Kontakt mit uns läuft über E-Mail. Wenn Sie uns schreiben, werden die von Ihnen übermittelten Daten (E-Mail-Adresse, Name, Inhalt der Nachricht sowie etwaige Anhänge) zur Bearbeitung Ihrer Anfrage verarbeitet — Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen bzw. Vertragserfüllung).</p>
+  <p>Unser E-Mail-Postfach wird bei Google Workspace betrieben (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Zur Bearbeitung und Strukturierung von Anfragen setzen wir zusätzlich technische Hilfsmittel zur automatisierten Textverarbeitung ein; dabei werden Inhalte Ihrer Nachricht an einen Auftragsverarbeiter außerhalb unseres Postfachs übermittelt. Eine automatisierte Entscheidung im Sinne des Art. 22 DSGVO findet nicht statt — jede Antwort und jedes Angebot wird vor dem Versand von uns persönlich geprüft und freigegeben.</p>
+  <p>Die Daten werden gelöscht, sobald sie für die Bearbeitung nicht mehr erforderlich sind und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>
 
   <h2>5. Ihre Rechte</h2>
   <p>Sie haben gegenüber dem Verantwortlichen folgende Rechte hinsichtlich Ihrer personenbezogenen Daten: Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) sowie Widerspruch gegen die Verarbeitung (Art. 21 DSGVO).</p>
@@ -75,6 +81,7 @@
   <a href="impressum.html">Impressum</a>
   <a href="datenschutz.html">Datenschutz</a>
 </footer>
+</div>
 
 </body>
 </html>
