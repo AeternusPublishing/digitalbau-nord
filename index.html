@@ -77,11 +77,11 @@
           },
           {
             "@type": "Offer",
-            "name": "Relaunch",
+            "name": "Neuaufbau",
             "url": "https://digitalbau-nord.de/#preise",
-            "price": "1890",
+            "price": "1900",
             "priceCurrency": "EUR",
-            "priceSpecification": { "@type": "UnitPriceSpecification", "price": "1890", "priceCurrency": "EUR", "valueAddedTaxIncluded": false }
+            "priceSpecification": { "@type": "UnitPriceSpecification", "price": "1900", "priceCurrency": "EUR", "valueAddedTaxIncluded": false }
           }
         ]
       }
@@ -238,7 +238,7 @@
   .chip{display:inline-flex;align-items:center;gap:9px;padding:7px 14px;font-family:var(--font-heading);font-size:12px;
     letter-spacing:.14em;text-transform:uppercase;color:var(--accent-400);
     border:1px solid rgba(148,188,227,.45);margin-bottom:26px}
-  .hero h1{font-size:78px;line-height:.98;letter-spacing:-.025em;margin-bottom:24px}
+  .hero h1{font-size:78px;line-height:.98;letter-spacing:-.025em;margin-bottom:24px;hyphens:auto;overflow-wrap:break-word}
   .hero h1 em{font-style:normal;color:var(--accent-400)}
   .lede{font-size:18px;line-height:1.55;max-width:36ch;color:rgba(234,241,248,0.8);margin-bottom:34px}
   .hero-actions{display:flex;gap:12px;margin-bottom:34px;flex-wrap:wrap}
@@ -250,7 +250,7 @@
   /* ── Leistungen (hell) ────────────────────────────────────────────── */
   .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:44px;flex-wrap:wrap}
   .sec-head .lead-in{max-width:34ch}
-  .cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .cards4{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
   .card{padding:28px}
   .card h3{font-size:21px;margin-bottom:8px}
   .card p{font-size:13px;color:rgba(29,31,32,0.68)}
@@ -259,12 +259,21 @@
 
   /* ── Wertband (dunkel) ────────────────────────────────────────────── */
   .valueband{position:relative;background:linear-gradient(158deg,#274056,#0e1922);color:var(--dark-text);
-    padding:60px 48px;display:grid;grid-template-columns:.8fr 1fr 1fr 1fr;gap:40px;align-items:center}
+    padding:60px 48px;display:grid;grid-template-columns:.8fr 1.6fr;gap:48px;align-items:start}
   .valueband > *{position:relative}
   .valueband h2{font-size:28px}
   .vcol{border-left:1px solid rgba(255,255,255,.18);padding-left:24px}
   .vcol .vt{font-family:var(--font-heading);font-weight:600;font-size:21px;margin-bottom:6px}
   .vcol p{font-size:13px;color:rgba(234,241,248,0.7)}
+  .vcol ul{margin:18px 0 0;padding-left:20px;color:rgba(234,241,248,.82);font-size:14px;line-height:1.8}
+
+  /* ── Referenzen ─────────────────────────────────────────────────── */
+  .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .work-card{padding:28px;display:flex;flex-direction:column}
+  .work-card h3{font-size:24px;margin:12px 0 8px}
+  .work-card p{font-size:14px;color:rgba(29,31,32,.68)}
+  .work-card .work-scope{margin:16px 0 22px;flex:1}
+  .work-tag{align-self:flex-start;padding:5px 9px;background:var(--accent-100);color:var(--accent-800);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 
   /* ── Ablauf (hell) ────────────────────────────────────────────────── */
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
@@ -298,6 +307,7 @@
   .care-cell + .care-cell{border-left:1px solid var(--divider)}
   .care-cell h3{font-size:20px;margin-bottom:6px}
   .care-cell p{font-size:12px;margin-bottom:16px}
+  .care-cell ul{font-size:12px;line-height:1.55;margin:0 0 16px;padding-left:17px}
   .care-cell .p{font-family:var(--font-heading);font-weight:600;font-size:26px;color:var(--text)}
   .care-cell .p span{font-size:12px;color:rgba(29,31,32,0.68);font-weight:400}
 
@@ -318,9 +328,14 @@
   .contact .mailline{margin-top:24px;font-size:15px;color:rgba(234,241,248,0.8)}
   .contact .mailline a{color:var(--accent-400);border-bottom:1px solid rgba(148,188,227,.4)}
   .contact .note{margin-top:14px;font-size:13px;color:rgba(234,241,248,0.55);max-width:52ch;margin-inline:auto}
-
-
-  .contact-action{margin-top:30px}
+  .contact-action{margin-top:30px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+  .voice-panel{display:none;max-width:620px;margin:24px auto 0;padding:22px;border:1px solid rgba(148,188,227,.4);text-align:left;background:rgba(13,23,32,.55)}
+  .voice-panel.open{display:block}
+  .voice-panel p{font-size:13px;color:rgba(234,241,248,.75);margin-bottom:14px}
+  .voice-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .voice-controls button,.voice-controls a{font:inherit}
+  .voice-status{font-size:13px;color:var(--accent-400);margin-top:12px}
+  .voice-panel audio{width:100%;margin-top:14px}
 
   /* ── Footer ───────────────────────────────────────────────────────── */
   .footer{border-top:1px solid var(--divider);padding:32px 48px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
@@ -342,9 +357,10 @@
     .nav-toggle:checked ~ .nav-links{display:flex}
     .nav-cta{display:none}
     .hero{grid-template-columns:1fr;gap:40px;padding:48px 20px}
-    .hero h1{font-size:44px}
+    .hero h1{font-size:38px}
     .hero-frame{height:280px}
     .cards4{grid-template-columns:1fr}
+    .work-grid{grid-template-columns:1fr}
     .valueband{grid-template-columns:1fr;gap:24px}
     .vcol{border-left:0;border-top:1px solid rgba(255,255,255,.18);padding-left:0;padding-top:20px}
     .steps{grid-template-columns:1fr}
@@ -375,9 +391,9 @@
     <input type="checkbox" id="navtoggle" class="nav-toggle" aria-hidden="true" tabindex="-1">
     <nav class="nav-links" id="hauptnavigation" aria-label="Hauptnavigation">
       <a href="#leistungen">Leistungen</a>
+      <a href="#arbeiten">Arbeiten</a>
       <a href="#ablauf">Ablauf</a>
       <a href="#preise">Preise</a>
-      <a href="#pflege">Pflege</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a class="btn btn-primary nav-cta" href="#kontakt">Unverbindlich anfragen</a>
@@ -390,16 +406,15 @@
   <section class="hero">
     <div>
       <span class="chip">Hamburg &amp; Norddeutschland</span>
-      <h1>Keine Termine.<br>Keine Rückrufe.<br>Eine <em>fertige</em> Website.</h1>
-      <p class="lede">Sie senden uns in Stichpunkten, was Sie benötigen — wir entwickeln daraus Ihren professionellen Webauftritt. Ohne komplizierte Fragebögen oder unnötige Abstimmungsrunden. Neu erstellt oder als Relaunch Ihrer bestehenden Seite.</p>
+      <h1>Stichpunkte oder Sprachnachricht genügen.<br><em>Den Rest übernehmen wir.</em></h1>
+      <p class="lede">Sie schildern uns Ihren Betrieb, Ihre Leistungen und das gewünschte Ergebnis – schriftlich oder als Sprachnachricht, wann immer es in Ihren Arbeitsalltag passt. Wir übernehmen Konzeption, Strukturierung, Textentwurf, Gestaltung und technische Umsetzung.</p>
+      <p class="lede"><strong>Ohne zeitraubende Besprechungsrunden. Verständlich, nachvollziehbar und schriftlich dokumentiert.</strong></p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="#kontakt">Projekt anfragen <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
-        <a class="btn btn-secondary on-dark" href="#preise">Pakete &amp; Preise</a>
+        <a class="btn btn-primary" href="#kontakt">Projekt schildern <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+        <a class="btn btn-secondary on-dark" href="#preise">Leistungen und Preise ansehen</a>
       </div>
       <div class="hero-trust">
-        <span class="trust"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Fester Ansprechpartner bis zur Veröffentlichung</span>
-        <span class="trust"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>Schriftliches Festpreisangebot vor Projektbeginn</span>
-        <span class="trust"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Keine volle Vorkasse — Hauptbetrag erst vor dem Livegang</span>
+        <span>Fester Ansprechpartner · schriftliches Festpreisangebot · 30 Prozent Anzahlung</span>
       </div>
     </div>
     <div class="hero-visual">
@@ -444,30 +459,25 @@
   <div class="sec-head">
     <div class="lead-in">
       <div class="kicker">Leistungen</div>
-      <h2 class="h2">Alles aus einer Hand</h2>
+      <h2 class="h2">Konzeption, Texte, Gestaltung und Technik aus einer Hand</h2>
     </div>
-    <p class="muted" style="font-size:15px;max-width:34ch">Eine feste Anlaufstelle von der ersten Idee bis zur laufenden Betreuung — schriftlich, nachvollziehbar, ohne Fachchinesisch.</p>
+    <p class="muted" style="font-size:15px;max-width:40ch">Wir erstellen neue Unternehmenswebsites, überarbeiten bestehende Internetauftritte und übernehmen auf Wunsch die laufende technische Pflege. Dabei erhalten Sie während des gesamten Projekts einen festen Ansprechpartner.</p>
   </div>
   <div class="cards4">
     <div class="card blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
       <span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14"/><path d="M8 21h8M12 17v4"/></svg></span>
-      <h3>Website-Erstellung</h3>
-      <p>Moderne, mobiloptimierte Seiten mit klarer Struktur, aussagekräftigen Seitentiteln und sauberer technischer Grundlage.</p>
+      <h3>Neue Website</h3>
+      <p>Wir entwickeln Struktur, Texte und Gestaltung auf Grundlage Ihrer Angaben und setzen die Website technisch vollständig um.</p>
     </div>
     <div class="card blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
       <span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-2.9 1.2V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-2.9-1.2l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0-1.2-2.9H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.2-2.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 2.9 1.2l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z"/></svg></span>
-      <h3>Pflege &amp; Wartung</h3>
-      <p>Hosting, technische Aktualisierungen, Sicherungen und vereinbarte Inhaltsänderungen in klar abgegrenzten Paketen.</p>
+      <h3>Neuaufbau bestehender Websites</h3>
+      <p>Wir übernehmen vorhandene Inhalte, ordnen sie neu und bauen Ihren Internetauftritt technisch und gestalterisch zeitgemäß auf.</p>
     </div>
     <div class="card blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
       <span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.4"/><path d="M21 3v6h-6"/></svg></span>
-      <h3>Relaunch &amp; Umzug</h3>
-      <p>Neuaufbau einer bestehenden Website mit sorgfältiger Übernahme relevanter Inhalte und vorbereiteten Weiterleitungen.</p>
-    </div>
-    <div class="card blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-      <span class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
-      <h3>Technische Grundlage für Auffindbarkeit</h3>
-      <p>Klare Seitenstruktur, aussagekräftige Metadaten, schnelle Ladezeiten und saubere technische Auszeichnung.</p>
+      <h3>Laufende Betreuung</h3>
+      <p>Nach der Veröffentlichung übernehmen wir auf Wunsch Hosting, technische Aktualisierungen, Sicherungen und vereinbarte Inhaltsänderungen.</p>
     </div>
   </div>
 </section>
@@ -476,19 +486,12 @@
 <section class="valueband metagrid">
   <div>
     <div class="kicker on-dark">Warum wir</div>
-    <h2>Ihr Vorteil</h2>
+    <h2>Ein klarer Ablauf. Ein verantwortlicher Ansprechpartner.</h2>
   </div>
   <div class="vcol">
-    <div class="vt">Ihr eigener Aufwand bleibt gering</div>
-    <p>Sie liefern und prüfen die fachlichen Grundlagen. Konzeption, Gestaltung, Texte und technische Umsetzung übernehmen wir im vereinbarten Umfang.</p>
-  </div>
-  <div class="vcol">
-    <div class="vt">Persönlich verantwortlich</div>
-    <p>Digitalbau Nord wird von Patrick Fleck geführt. Von der Anfrage bis zur Veröffentlichung haben Sie einen festen Ansprechpartner, der den Stand Ihres Projekts kennt.</p>
-  </div>
-  <div class="vcol">
-    <div class="vt">Technisch sauber umgesetzt</div>
-    <p>Bereitgestellte oder gesondert beauftragte Rechtstexte binden wir technisch ein. Eine individuelle Rechtsberatung ist nicht Bestandteil unserer Leistung.</p>
+    <p>Digitalbau Nord wird von Patrick Fleck geführt. Als langjähriger Unternehmer kennt er die Anforderungen kleiner und mittelständischer Betriebe aus eigener Praxis: knappe Zeit, klare Kosten und Lösungen, die ohne unnötigen Verwaltungsaufwand funktionieren.</p>
+    <p>Sie liefern die fachlichen Grundlagen. Wir übernehmen den größten Teil der Ausarbeitung und halten sämtliche Absprachen schriftlich fest.</p>
+    <ul><li>Keine zeitraubenden Besprechungsrunden</li><li>Schriftliches Festpreisangebot vor Auftragserteilung</li><li>Vollständiger Entwurf vor Zahlung des Restbetrags</li><li>Domain und Zugänge möglichst auf Ihren Namen</li><li>Keine Bindung an ein geschlossenes Baukastensystem</li></ul>
   </div>
 </section>
 
@@ -500,12 +503,22 @@
     <span class="muted" style="font-size:14px">Alles schriftlich — Sie können jeden Schritt nachlesen</span>
   </div>
   <div class="steps">
-    <div class="step blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i><div class="idx">01</div><h3>Ihre Anfrage</h3><p>Stichpunkte genügen. Ganze Sätze müssen Sie nicht formulieren — wir fragen nach, was fehlt, und Sie bekommen ein Festpreisangebot.</p></div>
-    <div class="step blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i><div class="idx">02</div><h3>Entwurf</h3><p>Ihre Seite als Vorschau-Link — fertig anzusehen, bevor der Hauptbetrag fällig wird. Änderungswünsche senden Sie einfach per E-Mail.</p></div>
-    <div class="step blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i><div class="idx">03</div><h3>Prüfung und Korrektur</h3><p>Sie prüfen Inhalte und fachliche Aussagen. Die im Angebot vereinbarten Korrekturen setzen wir gebündelt um.</p></div>
-    <div class="step blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i><div class="idx">04</div><h3>Veröffentlichung und Übergabe</h3><p>Nach Ihrer Freigabe veröffentlichen wir die Website, prüfen die wichtigsten Funktionen und übergeben die vereinbarten Zugänge und Unterlagen.</p></div>
+    <div class="step blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i><div class="idx">01</div><h3>Sie schildern das Vorhaben</h3><p>Stichpunkte, vorhandene Unterlagen oder eine Sprachnachricht genügen. Teilen Sie uns mit, was Ihr Betrieb anbietet, welche Kunden Sie erreichen möchten und welche Inhalte bereits vorhanden sind.</p></div>
+    <div class="step blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i><div class="idx">02</div><h3>Wir ordnen die Angaben</h3><p>Wir strukturieren die Informationen, prüfen, welche Angaben noch fehlen, und senden Ihnen entweder gezielte Rückfragen oder unmittelbar ein schriftliches Festpreisangebot.</p></div>
+    <div class="step blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i><div class="idx">03</div><h3>Sie erhalten den vollständigen Entwurf</h3><p>Nach Auftragserteilung erstellen wir Struktur, Texte und Gestaltung. Sie erhalten die Website über einen Vorschaulink und teilen uns Ihre Änderungswünsche gebündelt mit.</p></div>
+    <div class="step blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i><div class="idx">04</div><h3>Prüfung und Veröffentlichung</h3><p>Nach Ihrer fachlichen Freigabe und Zahlung des Restbetrags veröffentlichen wir die Website unter Ihrer Domain. Sie erhalten die vereinbarten Zugänge und Unterlagen vollständig übergeben.</p></div>
   </div>
 
+</section>
+
+<section id="arbeiten" class="pad" style="padding-top:0">
+  <div class="kicker">Ausgewählte Arbeiten</div>
+  <h2 class="h2" style="margin-bottom:40px">Webauftritte mit klarer Aufgabe</h2>
+  <div class="work-grid">
+    <article class="work-card blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i><span class="work-tag">Veröffentlicht</span><h3>Aeternus Verlag</h3><p><strong>Strukturierter Internetauftritt für einen Editions- und Fachverlag</strong></p><p>Entwicklung einer zurückhaltenden, markengerechten Website mit klar gegliederten Verlagsbereichen, Werkdarstellungen und langfristig erweiterbarer Inhaltsstruktur.</p><p class="work-scope"><strong>Leistungen:</strong> Konzeption, Textstruktur, Gestaltung, technische Umsetzung und Veröffentlichung.</p><a class="btn btn-secondary" href="https://aeternus-verlag.de/" target="_blank" rel="noopener noreferrer" aria-label="Projekt Aeternus Verlag in neuem Fenster ansehen">Projekt ansehen</a></article>
+    <article class="work-card blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i><span class="work-tag">Veröffentlicht</span><h3>Automobile Oststeinbek</h3><p><strong>Regionaler Internetauftritt für einen spezialisierten Fahrzeughandel</strong></p><p>Mobiloptimierte Unternehmenswebsite mit eindeutiger Marktpositionierung, klaren Kontaktwegen und einer technischen Grundlage für die regionale Auffindbarkeit.</p><p class="work-scope"><strong>Leistungen:</strong> Seitenstruktur, Texte, Gestaltung, technische Umsetzung und lokale Suchmaschinen-Grundlage.</p><a class="btn btn-secondary" href="https://www.automobileoststeinbek.de/" target="_blank" rel="noopener noreferrer" aria-label="Projekt Automobile Oststeinbek in neuem Fenster ansehen">Projekt ansehen</a></article>
+    <article class="work-card blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i><span class="work-tag">Musterprojekt</span><h3>Gestaltungsbeispiel: Handwerksbetrieb</h3><p><strong>Musterprojekt zur Veranschaulichung eines modernen Unternehmensauftritts</strong></p><p>Das ausdrücklich als Muster gekennzeichnete Projekt zeigt, wie Leistungen, Referenzarbeiten, Einsatzgebiet und Kontaktwege eines Handwerksbetriebs übersichtlich dargestellt werden können.</p><p class="work-scope"><strong>Leistungen:</strong> Musterkonzeption, Seitenaufbau, Textentwurf und Gestaltung.</p><span class="btn btn-secondary" aria-label="Gestaltungsbeispiel ist nicht öffentlich veröffentlicht">Gestaltungsbeispiel · nicht öffentlich</span></article>
+  </div>
 </section>
 
 <!-- ═══ PREISE (getöntes Band) ═══ -->
@@ -516,43 +529,32 @@
   <div class="prices">
     <div class="price blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
       <h3>Starter</h3>
-      <p class="desc">Ein kompakter Webauftritt für Handwerksbetriebe und kleinere Unternehmen.</p>
-      <div class="amount">ab 990 €<span> einmalig</span></div>
+      <p class="desc">Der kompakte Internetauftritt für Handwerksbetriebe und kleinere Unternehmen. Geeignet für Betriebe, die ihre wichtigsten Leistungen, Kontaktdaten und Unternehmensinformationen auf einer übersichtlichen Seite darstellen möchten.</p>
+      <div class="amount">990 €<span> einmalig</span></div>
       <ul class="feats">
-        <li class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5980a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Professioneller One-Pager</li>
-        <li class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5980a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Mobiloptimiert &amp; schnell</li>
-        <li class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5980a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Klarer Kontaktweg per E-Mail</li>
-        <li class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5980a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Technische Einbindung bereitgestellter Rechtstexte</li>
-        <li class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5980a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Zeitrahmen im Festpreisangebot</li>
+        <li>Professioneller Einseiter</li><li>Strukturierung und Textentwurf auf Grundlage Ihrer Stichpunkte oder Sprachnachricht</li><li>Individuell auf Ihren Betrieb abgestimmte Gestaltung</li><li>Optimierung für Mobiltelefon, Schreibtafel und Rechner</li><li>Klarer Kontaktweg</li><li>Technische Einbindung bereitgestellter Rechtstexte</li><li>Zwei gebündelte Korrekturrunden</li><li>Technische Veröffentlichung unter Ihrer Domain</li><li>Schriftlich vereinbarter Zeitrahmen</li>
       </ul>
-      <a class="btn btn-secondary btn-block" href="#kontakt">Jetzt unverbindlich anfragen</a>
+      <a class="btn btn-secondary btn-block" href="#kontakt">Starter anfragen</a>
     </div>
     <div class="price feat blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
       <span class="tag">Beliebt</span>
       <h3>Business</h3>
-      <p class="desc">Die vollständige Website für etablierte Unternehmen.</p>
-      <div class="amount">ab 2.900 €<span> einmalig</span></div>
+      <p class="desc">Der mehrseitige Unternehmensauftritt für Betriebe mit umfangreicherem Leistungsangebot. Geeignet für Unternehmen, die mehrere Leistungsbereiche, Referenzen, Standorte oder Zielgruppen getrennt darstellen möchten.</p>
+      <div class="amount">2.900 €<span> einmalig</span></div>
       <ul class="feats">
-        <li class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Mehrseitiger Unternehmensauftritt</li>
-        <li class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Eigenes Design für Ihre Marke</li>
-        <li class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Einrichtung des Google-Unternehmensprofils</li>
-        <li class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Bildoptimierung &amp; Basis-SEO</li>
-        <li class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94bce3" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Schriftliche Anleitung zur Pflege</li>
+        <li>Fünf bis acht individuell aufgebaute Seiten</li><li>Konzeption der vollständigen Seitenstruktur</li><li>Strukturierung und Textentwurf auf Grundlage Ihrer Angaben</li><li>Individuell auf Ihr Unternehmen abgestimmte Gestaltung</li><li>Darstellung von Leistungen, Unternehmen und Referenzen</li><li>Kontaktbereich</li><li>Technische Suchmaschinen-Grundlage mit optimierten Seitentiteln, strukturierten Daten und optimierten Ladezeiten</li><li>Bildoptimierung</li><li>Technische Einbindung bereitgestellter Rechtstexte</li><li>Zwei gebündelte Korrekturrunden</li><li>Technische Veröffentlichung unter Ihrer Domain</li><li>Schriftlich vereinbarter Zeitrahmen</li>
       </ul>
-      <a class="btn btn-primary btn-block" href="#kontakt">Jetzt unverbindlich anfragen</a>
+      <a class="btn btn-primary btn-block" href="#kontakt">Business anfragen</a>
     </div>
     <div class="price blueprint"><i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
-      <h3>Relaunch</h3>
-      <p class="desc">Neuaufbau und geplanter Wechsel Ihrer bestehenden Website.</p>
-      <div class="amount">ab 1.890 €<span> einmalig</span></div>
+      <h3>Neuaufbau</h3>
+      <p class="desc">Für bestehende Websites, die technisch oder gestalterisch überholt sind. Wir prüfen den vorhandenen Internetauftritt, übernehmen geeignete Inhalte und bauen die Website technisch sowie gestalterisch neu auf.</p>
+      <div class="amount">ab 1.900 €<span> einmalig</span></div>
       <ul class="feats">
-        <li class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5980a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Neuaufbau im aktuellen Design</li>
-        <li class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5980a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Ihre Inhalte werden übernommen</li>
-        <li class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5980a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Sorgfältig vorbereiteter Domain-Umzug</li>
-        <li class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5980a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Weiterleitungen für bestehende URLs</li>
-        <li class="trust"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5980a6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Technische Übergabe nach Vereinbarung</li>
+        <li>Bestandsaufnahme der vorhandenen Website</li><li>Übernahme und Neuordnung geeigneter Inhalte</li><li>Technische und gestalterische Neuerstellung</li><li>Einrichtung sorgfältiger Weiterleitungen</li><li>Optimierung für mobile Endgeräte</li><li>Technische Suchmaschinen-Grundlage</li><li>Zwei gebündelte Korrekturrunden</li><li>Veröffentlichung unter der bestehenden Domain</li>
       </ul>
-      <a class="btn btn-secondary btn-block" href="#kontakt">Jetzt unverbindlich anfragen</a>
+      <p class="desc">Der endgültige Festpreis wird nach Prüfung der bestehenden Website schriftlich vereinbart.</p>
+      <a class="btn btn-secondary btn-block" href="#kontakt">Neuaufbau anfragen</a>
     </div>
   </div>
   <p class="price-note"><strong>Keine volle Vorkasse.</strong> 30 % bei Beauftragung, der Rest erst, wenn Ihre fertige Seite vor Ihnen liegt und live gehen soll. Sie zahlen den Hauptbetrag also für etwas, das Sie gesehen haben.<br>
@@ -566,12 +568,12 @@
     <div>
       <div class="kicker">Pflege-Abo</div>
       <h2 class="h2" style="margin-bottom:14px">Ihre Website in guten Händen</h2>
-      <p>Auf Wunsch übernehmen wir Hosting, technische Pflege und vereinbarte Änderungen. Den genauen Umfang, Intervalle und Reaktionszeiten halten wir vorab im Angebot fest. Monatlich kündbar.</p>
+      <p>Wählen Sie den Umfang passend zu Ihrem laufenden Bedarf. Nicht verbrauchte Bearbeitungszeit verfällt am Monatsende. Darüber hinausgehende Arbeiten werden nur nach vorheriger schriftlicher Freigabe berechnet.</p>
     </div>
     <div class="care-grid">
-      <div class="care-cell"><h3>Basis</h3><p class="muted">Hosting, technische Aktualisierungen und Sicherungen nach Vereinbarung</p><div class="p">49 €<span>/Monat, zzgl. USt.</span></div></div>
-      <div class="care-cell"><h3>Komfort</h3><p class="muted">Basis-Leistungen und vereinbarte redaktionelle Änderungen</p><div class="p">99 €<span>/Monat, zzgl. USt.</span></div></div>
-      <div class="care-cell"><h3>Rundum</h3><p class="muted">Komfort-Leistungen und erweiterte Inhaltspflege nach Angebot</p><div class="p">199 €<span>/Monat, zzgl. USt.</span></div></div>
+      <div class="care-cell"><h3>Basis</h3><p>Für Unternehmen, die den technischen Betrieb zuverlässig auslagern möchten.</p><ul><li>Hosting</li><li>Technische Aktualisierungen</li><li>Regelmäßige Sicherungen</li><li>Überwachung der Erreichbarkeit</li><li>Wiederherstellung im technischen Störungsfall</li></ul><p>Redaktionelle Änderungen sind nicht enthalten.</p><div class="p">49 €<span>/Monat, zzgl. USt.</span></div></div>
+      <div class="care-cell"><h3>Komfort</h3><p>Für Unternehmen, bei denen regelmäßig kleinere Inhalte angepasst werden.</p><ul><li>Sämtliche Leistungen des Basispakets</li><li>Bis zu 30 Minuten Text- oder Bildänderungen je Monat</li><li>Anpassung von Öffnungszeiten, Kontaktdaten oder kurzen Leistungstexten</li><li>Austausch bereitgestellter Bilder</li></ul><div class="p">99 €<span>/Monat, zzgl. USt.</span></div></div>
+      <div class="care-cell"><h3>Rundum</h3><p>Für Unternehmen mit fortlaufendem Pflegebedarf.</p><ul><li>Sämtliche Leistungen des Komfortpakets</li><li>Insgesamt bis zu 90 Minuten Inhaltspflege je Monat</li><li>Neue Leistungsabschnitte oder Referenzen im vereinbarten Seitenaufbau</li><li>Regelmäßige technische Prüfung der wichtigsten Seitenbereiche</li><li>Kurze schriftliche Hinweise bei erkennbarem Anpassungsbedarf</li></ul><div class="p">199 €<span>/Monat, zzgl. USt.</span></div></div>
     </div>
   </div>
 </section>
@@ -596,12 +598,17 @@
 <section id="kontakt" class="contact metagrid">
   <div class="glow"></div>
   <div class="contact-in">
-    <h2>Beschreiben Sie kurz, was Sie vorhaben</h2>
-    <p class="sub">Name, Unternehmen und einige Stichpunkte genügen für den Anfang. Wir melden uns mit konkreten Rückfragen und, sobald der Umfang feststeht, mit einem schriftlichen Festpreisangebot.</p>
-    <p class="contact-action"><a class="btn btn-primary" aria-label="Unverbindliche Projektanfrage per E-Mail schreiben" href="mailto:info@digitalbau-nord.de?subject=Unverbindliche%20Projektanfrage">E-Mail-Anfrage schreiben
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></p>
+    <h2>Schildern Sie uns Ihr Vorhaben</h2>
+    <p class="sub">Stichpunkte oder eine Sprachnachricht genügen. Sie müssen weder ein vollständiges Konzept noch fertige Seitentexte vorbereiten. Nach Eingang Ihrer Angaben prüfen wir, ob die Informationen für ein Angebot ausreichen. Fehlt etwas Wesentliches, erhalten Sie ausschließlich die dafür erforderlichen Rückfragen.</p>
+    <p class="sub"><strong>Keine Telefontermine. Keine wiederkehrenden Besprechungsrunden. Sämtliche Angaben und Entscheidungen bleiben schriftlich nachvollziehbar.</strong></p>
+    <div class="contact-action"><a class="btn btn-primary" aria-label="Projekt schriftlich per E-Mail schildern" href="mailto:info@digitalbau-nord.de?subject=Projektanfrage%20an%20Digitalbau%20Nord">Projekt schriftlich schildern</a><button class="btn btn-secondary on-dark" type="button" id="voiceToggle" aria-controls="voicePanel" aria-expanded="false">Sprachnachricht aufnehmen</button></div>
+    <div class="voice-panel" id="voicePanel" aria-live="polite">
+      <p>Die Aufnahme entsteht ausschließlich lokal in Ihrem Browser. Danach laden Sie die Audiodatei herunter und hängen sie selbst an Ihre E-Mail an. Sie wird nicht automatisch über diese Website versendet. Eine spätere Transkription dient nur als Arbeitsfassung; unklare entscheidende Angaben fragen wir nach.</p>
+      <div class="voice-controls"><button class="btn btn-primary" type="button" id="voiceStart">Aufnahme starten</button><button class="btn btn-secondary on-dark" type="button" id="voiceStop" disabled>Aufnahme beenden</button><a class="btn btn-secondary on-dark" id="voiceDownload" hidden>Aufnahme herunterladen</a><a class="btn btn-secondary on-dark" href="mailto:info@digitalbau-nord.de?subject=Projektanfrage%20mit%20Sprachnachricht">E-Mail öffnen</a></div>
+      <div class="voice-status" id="voiceStatus">Noch keine Aufnahme.</div><audio id="voicePlayback" controls hidden></audio>
+    </div>
     <p class="mailline"><a href="mailto:info@digitalbau-nord.de">info@digitalbau-nord.de</a></p>
-    <p class="note">Der Link öffnet Ihr E-Mail-Programm. Es werden auf dieser Website keine Formulardaten oder Sprachaufnahmen erfasst.</p>
+    <p class="note">Die schriftliche Anfrage öffnet Ihr E-Mail-Programm. Die Website übermittelt selbst weder Formulardaten noch Sprachaufnahmen.</p>
   </div>
 </section>
 
@@ -643,6 +650,68 @@
         burger.setAttribute('aria-expanded', 'false');
         burger.setAttribute('aria-label', 'Menü öffnen');
       });
+    });
+  })();
+
+  // Lokale Sprachaufnahme: keine Übertragung, kein Server-Endpunkt.
+  (function () {
+    var panel = document.getElementById('voicePanel');
+    var toggle = document.getElementById('voiceToggle');
+    var start = document.getElementById('voiceStart');
+    var stop = document.getElementById('voiceStop');
+    var status = document.getElementById('voiceStatus');
+    var playback = document.getElementById('voicePlayback');
+    var download = document.getElementById('voiceDownload');
+    var recorder;
+    var stream;
+    var chunks = [];
+    var objectUrl;
+
+    toggle.addEventListener('click', function () {
+      var open = !panel.classList.contains('open');
+      panel.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      if (open) start.focus();
+    });
+
+    if (!navigator.mediaDevices || !window.MediaRecorder) {
+      start.disabled = true;
+      status.textContent = 'Ihr Browser unterstützt die Aufnahme nicht. Sie können eine Audiodatei mit Ihrem Gerät aufnehmen und per E-Mail anhängen.';
+      return;
+    }
+
+    start.addEventListener('click', function () {
+      navigator.mediaDevices.getUserMedia({ audio: true }).then(function (audioStream) {
+        stream = audioStream;
+        chunks = [];
+        recorder = new MediaRecorder(stream);
+        recorder.addEventListener('dataavailable', function (event) { if (event.data.size) chunks.push(event.data); });
+        recorder.addEventListener('stop', function () {
+          var mime = recorder.mimeType || 'audio/webm';
+          var blob = new Blob(chunks, { type: mime });
+          if (objectUrl) URL.revokeObjectURL(objectUrl);
+          objectUrl = URL.createObjectURL(blob);
+          playback.src = objectUrl;
+          playback.hidden = false;
+          download.href = objectUrl;
+          download.download = 'projektanfrage-digitalbau-nord.' + (mime.indexOf('mp4') !== -1 ? 'm4a' : 'webm');
+          download.hidden = false;
+          status.textContent = 'Aufnahme bereit. Bitte herunterladen und an Ihre E-Mail anhängen.';
+          stream.getTracks().forEach(function (track) { track.stop(); });
+        });
+        recorder.start();
+        start.disabled = true;
+        stop.disabled = false;
+        status.textContent = 'Aufnahme läuft …';
+      }).catch(function () {
+        status.textContent = 'Mikrofonzugriff wurde nicht erteilt. Sie können stattdessen eine Audiodatei mit Ihrem Gerät aufnehmen.';
+      });
+    });
+
+    stop.addEventListener('click', function () {
+      if (recorder && recorder.state === 'recording') recorder.stop();
+      start.disabled = false;
+      stop.disabled = true;
     });
   })();
 
