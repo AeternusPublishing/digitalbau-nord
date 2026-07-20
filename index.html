@@ -404,7 +404,11 @@
   /* ── Responsiv ────────────────────────────────────────────────────── */
   @media(max-width:980px){
     .pad,.prices-band,.valueband,.contact{padding:48px 20px}
-    .nav{padding:16px 20px;flex-wrap:wrap;gap:16px}
+    /* Unter 981px greift der Sticky-Ueberlagerungstrick vom Desktop nicht (siehe
+       oben) — ohne eigenen Hintergrund saesse die Nav mit hellen Farben auf dem
+       hellen Seitenhintergrund, kaum lesbar. Deshalb hier fest der dunkle Grund,
+       den sie auf Desktop erst nach dem Scrollen bekommt. */
+    .nav{padding:16px 20px;flex-wrap:wrap;gap:16px;background:rgba(13,23,32,.92);backdrop-filter:blur(10px)}
     .nav-burger{display:grid;place-items:center;width:44px;height:44px;padding:0;border:1px solid var(--d-divider);background:transparent;color:inherit;cursor:pointer;margin-left:auto}
     .brand{margin-right:0}
     .nav-links{display:none;width:100%;flex-direction:column;gap:0;border-top:1px solid var(--d-divider);padding-top:8px}
@@ -427,6 +431,9 @@
     .contact h2{font-size:32px}
     .cf-row{grid-template-columns:1fr;gap:0}
     .h2{font-size:30px}
+    .footer{padding:20px 20px;gap:10px}
+    .footer-links{gap:8px 18px;font-size:12px}
+    .footer .mail,.footer .copy{font-size:11px}
   }
 </style>
 </head>
@@ -719,7 +726,7 @@
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
       </div>
 
-      <p class="cf-hint">Ihre Angaben werden ausschließlich zum Erstellen einer vorausgefüllten E-Mail verwendet, die Sie selbst absenden — diese Website betreibt keinen Server, der Formulardaten empfängt. Näheres in der <a href="datenschutz.html">Datenschutzerklärung</a>. Antwort Mo–Fr, 8–18 Uhr.</p>
+      <p class="cf-hint" id="cf-hint">Ihre Angaben werden ausschließlich zum Erstellen einer vorausgefüllten E-Mail verwendet, die Sie selbst absenden — diese Website betreibt keinen Server, der Formulardaten empfängt. Näheres in der <a href="datenschutz.html">Datenschutzerklärung</a>. Antwort Mo–Fr, 8–18 Uhr.</p>
       <div class="cf-status" id="cf-status" role="status" aria-live="polite"></div>
     </form>
 
@@ -751,7 +758,7 @@
      vorausgefüllte E-Mail zurück. Nach dem Deploy traegt Patrick hier die
      /exec-URL ein — Formularversand UND automatischer Sprachnachricht-Versand
      haengen beide an genau dieser einen Konstante. */
-  var ENDPUNKT = '';
+  var ENDPUNKT = 'https://script.google.com/macros/s/AKfycbymK1P4YbdjEzGbyRu4JutD_wBynp55cTsrNE72PN52TTLGlWvTFaQfDuixyxVYLiHS/exec';
 
   // Sticky-Nav: über hellen Sektionen dunkler Grund, damit die hellen Nav-Texte lesbar bleiben.
   (function () {
@@ -907,6 +914,11 @@
     if (!form) return;
     var status = document.getElementById('cf-status');
     var button = form.querySelector('button[type=submit]');
+    var hint = document.getElementById('cf-hint');
+
+    if (ENDPUNKT && hint) {
+      hint.innerHTML = 'Ihre Angaben werden automatisch an ein von uns selbst betriebenes Script übertragen und wie eine direkt gesendete E-Mail bearbeitet — es entsteht keine vorausgefüllte E-Mail in Ihrem Programm. Näheres in der <a href="datenschutz.html">Datenschutzerklärung</a>. Antwort Mo–Fr, 8–18 Uhr.';
+    }
 
     function melde(text, artOk) {
       status.className = 'cf-status ' + (artOk ? 'ok' : 'err');
