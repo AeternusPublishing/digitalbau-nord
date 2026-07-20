@@ -196,6 +196,7 @@
   /* ── Buttons ──────────────────────────────────────────────────────── */
   .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;cursor:pointer;
     font-family:var(--font-heading);font-weight:600;font-size:15px;line-height:1.2;
+    background:transparent;color:inherit;text-decoration:none;appearance:none;
     border:1px solid var(--divider);border-radius:0;padding:14px 24px;transition:background .15s,color .15s,border-color .15s}
   .btn svg{display:block}
   .btn-primary{background:var(--accent);border-color:var(--accent);color:var(--dark-ink)}
@@ -238,7 +239,7 @@
   .chip{display:inline-flex;align-items:center;gap:9px;padding:7px 14px;font-family:var(--font-heading);font-size:12px;
     letter-spacing:.14em;text-transform:uppercase;color:var(--accent-400);
     border:1px solid rgba(148,188,227,.45);margin-bottom:26px}
-  .hero h1{font-size:78px;line-height:.98;letter-spacing:-.025em;margin-bottom:24px;hyphens:auto;overflow-wrap:break-word}
+  .hero h1{font-size:clamp(40px,5.5vw,78px);line-height:1.02;letter-spacing:-.025em;margin-bottom:24px;hyphens:none;overflow-wrap:break-word}
   .hero h1 em{font-style:normal;color:var(--accent-400)}
   .lede{font-size:18px;line-height:1.55;max-width:36ch;color:rgba(234,241,248,0.8);margin-bottom:34px}
   .hero-actions{display:flex;gap:12px;margin-bottom:34px;flex-wrap:wrap}
@@ -337,6 +338,39 @@
   .voice-status{font-size:13px;color:var(--accent-400);margin-top:12px}
   .voice-panel audio{width:100%;margin-top:14px}
 
+  /* ── Kontaktformular ──────────────────────────────────────────────── */
+  .cform{max-width:640px;margin:24px auto 0;text-align:left}
+  .cf-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cf-field{margin-bottom:14px}
+  .cf-field label{display:block;font-family:var(--font-heading);font-size:13px;letter-spacing:.04em;
+    text-transform:uppercase;color:rgba(234,241,248,.72);margin-bottom:6px}
+  .cf-field .opt{text-transform:none;letter-spacing:0;color:rgba(234,241,248,.45);font-size:12px}
+  .cform input[type=text],.cform input[type=email],.cform input[type=tel],.cform textarea{
+    width:100%;padding:12px 14px;font-family:var(--font-body);font-size:15px;line-height:1.5;
+    color:var(--dark-text);background:rgba(255,255,255,.05);border:1px solid var(--d-frame);border-radius:0}
+  .cform textarea{min-height:132px;resize:vertical}
+  .cform input::placeholder,.cform textarea::placeholder{color:rgba(234,241,248,.38)}
+  .cform input:focus,.cform textarea:focus{outline:none;border-color:var(--accent-400);background:rgba(255,255,255,.09)}
+  .cf-choice{display:flex;gap:20px;flex-wrap:wrap;padding-top:4px}
+  .cf-choice label{display:inline-flex;align-items:center;gap:8px;text-transform:none;letter-spacing:0;
+    font-family:var(--font-body);font-size:15px;color:rgba(234,241,248,.85);margin:0;cursor:pointer}
+  .cf-choice input{accent-color:var(--accent-400);width:18px;height:18px}
+  label.cf-consent{display:flex;align-items:flex-start;gap:10px;text-transform:none;letter-spacing:0;
+    font-family:var(--font-body);font-size:14px;line-height:1.45;color:rgba(234,241,248,.85);margin:0;cursor:pointer}
+  .cf-consent input{accent-color:var(--accent-400);width:18px;height:18px;flex:none;margin-top:2px}
+  .cf-consent a{color:var(--accent-400);border-bottom:1px solid rgba(148,188,227,.4)}
+  /* Honigtopf: für Menschen unsichtbar, für Formularroboter verlockend.
+     Kein display:none — manche Bots überspringen ausgeblendete Felder. */
+  .cf-trap{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  .cf-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:20px}
+  .cf-hint{font-size:12.5px;color:rgba(234,241,248,.5);max-width:46ch;margin-top:14px}
+  .cf-hint a{color:var(--accent-400);border-bottom:1px solid rgba(148,188,227,.4)}
+  .cf-status{margin-top:16px;padding:14px 16px;font-size:14.5px;display:none}
+  .cf-status.ok{display:block;background:rgba(20,184,138,.14);border:1px solid rgba(20,184,138,.5);color:#a9e9d2}
+  .cf-status.err{display:block;background:rgba(179,38,30,.16);border:1px solid rgba(179,38,30,.55);color:#ffc9c4}
+  .cf-status a{color:inherit;text-decoration:underline}
+  .cform button[disabled]{opacity:.55;cursor:progress}
+
   /* ── Footer ───────────────────────────────────────────────────────── */
   .footer{border-top:1px solid var(--divider);padding:32px 48px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
   .footer .fb{font-family:var(--font-heading);font-weight:600;font-size:16px;margin-right:auto}
@@ -370,6 +404,7 @@
     .care-cell + .care-cell{border-left:0;border-top:1px solid var(--divider)}
     .faq{grid-template-columns:1fr}
     .contact h2{font-size:32px}
+    .cf-row{grid-template-columns:1fr;gap:0}
     .h2{font-size:30px}
   }
 </style>
@@ -601,14 +636,74 @@
     <h2>Schildern Sie uns Ihr Vorhaben</h2>
     <p class="sub">Stichpunkte oder eine Sprachnachricht genügen. Sie müssen weder ein vollständiges Konzept noch fertige Seitentexte vorbereiten. Nach Eingang Ihrer Angaben prüfen wir, ob die Informationen für ein Angebot ausreichen. Fehlt etwas Wesentliches, erhalten Sie ausschließlich die dafür erforderlichen Rückfragen.</p>
     <p class="sub"><strong>Keine Telefontermine. Keine wiederkehrenden Besprechungsrunden. Sämtliche Angaben und Entscheidungen bleiben schriftlich nachvollziehbar.</strong></p>
-    <div class="contact-action"><a class="btn btn-primary" aria-label="Projekt schriftlich per E-Mail schildern" href="mailto:info@digitalbau-nord.de?subject=Projektanfrage%20an%20Digitalbau%20Nord">Projekt schriftlich schildern</a><button class="btn btn-secondary on-dark" type="button" id="voiceToggle" aria-controls="voicePanel" aria-expanded="false">Sprachnachricht aufnehmen</button></div>
-    <div class="voice-panel" id="voicePanel" aria-live="polite">
-      <p>Die Aufnahme entsteht ausschließlich lokal in Ihrem Browser. Danach laden Sie die Audiodatei herunter und hängen sie selbst an Ihre E-Mail an. Sie wird nicht automatisch über diese Website versendet. Eine spätere Transkription dient nur als Arbeitsfassung; unklare entscheidende Angaben fragen wir nach.</p>
-      <div class="voice-controls"><button class="btn btn-primary" type="button" id="voiceStart">Aufnahme starten</button><button class="btn btn-secondary on-dark" type="button" id="voiceStop" disabled>Aufnahme beenden</button><a class="btn btn-secondary on-dark" id="voiceDownload" hidden>Aufnahme herunterladen</a><a class="btn btn-secondary on-dark" href="mailto:info@digitalbau-nord.de?subject=Projektanfrage%20mit%20Sprachnachricht">E-Mail öffnen</a></div>
-      <div class="voice-status" id="voiceStatus">Noch keine Aufnahme.</div><audio id="voicePlayback" controls hidden></audio>
-    </div>
-    <p class="mailline"><a href="mailto:info@digitalbau-nord.de">info@digitalbau-nord.de</a></p>
-    <p class="note">Die schriftliche Anfrage öffnet Ihr E-Mail-Programm. Die Website übermittelt selbst weder Formulardaten noch Sprachaufnahmen.</p>
+    <form class="cform" id="anfrage" novalidate>
+      <div class="cf-row">
+        <div class="cf-field">
+          <label for="cf-name">Name</label>
+          <input type="text" id="cf-name" name="name" autocomplete="name" required placeholder="Vor- und Nachname">
+        </div>
+        <div class="cf-field">
+          <label for="cf-mail">E-Mail</label>
+          <input type="email" id="cf-mail" name="email" autocomplete="email" required placeholder="name@firma.de">
+        </div>
+      </div>
+
+      <div class="cf-field">
+        <label for="cf-text">Ihr Projekt <span class="opt" id="cf-text-opt" hidden>— oder nehmen Sie unten eine Sprachnachricht auf</span></label>
+        <textarea id="cf-text" name="nachricht" required placeholder="Erzählen Sie kurz, worum es geht — Stichpunkte genügen völlig. Zum Beispiel: was Ihr Betrieb macht, was Ihnen an der jetzigen Lösung fehlt, bis wann es fertig sein soll."></textarea>
+      </div>
+
+      <p class="cf-hint" style="margin:-6px 0 14px">Lieber sprechen als tippen? <button class="btn btn-secondary on-dark" style="padding:8px 14px;font-size:13px" type="button" id="voiceToggle" aria-controls="voicePanel" aria-expanded="false">Sprachnachricht aufnehmen</button></p>
+      <div class="voice-panel" id="voicePanel" aria-live="polite">
+        <p>Die Aufnahme entsteht ausschließlich lokal in Ihrem Browser. Danach laden Sie die Audiodatei herunter und hängen sie selbst an Ihre E-Mail an. Sie wird nicht automatisch über diese Website versendet. Eine spätere Transkription dient nur als Arbeitsfassung; unklare entscheidende Angaben fragen wir nach.</p>
+        <div class="voice-controls"><button class="btn btn-primary" type="button" id="voiceStart">Aufnahme starten</button><button class="btn btn-secondary on-dark" type="button" id="voiceStop" disabled>Aufnahme beenden</button><a class="btn btn-secondary on-dark" id="voiceDownload" hidden>Aufnahme herunterladen</a></div>
+        <div class="voice-status" id="voiceStatus">Noch keine Aufnahme.</div><audio id="voicePlayback" controls hidden></audio>
+      </div>
+
+      <div class="cf-row">
+        <div class="cf-field">
+          <label for="cf-tel">Telefon <span class="opt">— optional</span></label>
+          <input type="tel" id="cf-tel" name="telefon" autocomplete="tel" placeholder="nur falls Sie möchten">
+        </div>
+        <div class="cf-field">
+          <label for="cf-branche">Branche <span class="opt">— optional</span></label>
+          <input type="text" id="cf-branche" name="branche" placeholder="z. B. Dachdecker, Kanzlei, Café">
+        </div>
+      </div>
+
+      <div class="cf-field">
+        <label id="cf-vorh-label">Vorhanden <span class="opt">— optional, Mehrfachauswahl</span></label>
+        <div class="cf-choice" role="group" aria-labelledby="cf-vorh-label">
+          <label><input type="checkbox" name="vorhanden" value="Domain"> Domain</label>
+          <label><input type="checkbox" name="vorhanden" value="Logo"> Logo</label>
+          <label><input type="checkbox" name="vorhanden" value="Website"> bestehende Website</label>
+          <label><input type="checkbox" name="vorhanden" value="Texte/Bilder"> Texte oder Bilder</label>
+        </div>
+      </div>
+
+      <div class="cf-field">
+        <label class="cf-consent" for="cf-consent">
+          <input type="checkbox" id="cf-consent" name="einwilligung" required>
+          <span>Ich habe die <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> zur Kenntnis genommen, insbesondere den Abschnitt zur Kontaktaufnahme.</span>
+        </label>
+      </div>
+
+      <div class="cf-trap" aria-hidden="true">
+        <label for="cf-firma2">Firma nicht ausfüllen</label>
+        <input type="text" id="cf-firma2" name="firma2" tabindex="-1" autocomplete="off">
+      </div>
+
+      <div class="cf-actions">
+        <button type="submit" class="btn btn-primary" style="padding:15px 28px;font-size:16px">Anfrage senden
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
+      </div>
+
+      <p class="cf-hint">Ihre Angaben werden ausschließlich zum Erstellen einer vorausgefüllten E-Mail verwendet, die Sie selbst absenden — diese Website betreibt keinen Server, der Formulardaten empfängt. Näheres in der <a href="datenschutz.html">Datenschutzerklärung</a>. Antwort Mo–Fr, 8–18 Uhr.</p>
+      <div class="cf-status" id="cf-status" role="status" aria-live="polite"></div>
+    </form>
+
+    <p class="mailline">Lieber direkt per E-Mail? <a href="mailto:info@digitalbau-nord.de">info@digitalbau-nord.de</a></p>
+    <p class="note">Alles läuft schriftlich — Sie schreiben, wann es Ihnen passt. Meist Antwort innerhalb weniger Stunden, spätestens am nächsten Werktag.</p>
   </div>
 </section>
 
@@ -698,6 +793,11 @@
           download.hidden = false;
           status.textContent = 'Aufnahme bereit. Bitte herunterladen und an Ihre E-Mail anhängen.';
           stream.getTracks().forEach(function (track) { track.stop(); });
+          // Wer gesprochen hat, muss das Projektfeld nicht zusätzlich ausfüllen.
+          var textOpt = document.getElementById('cf-text-opt');
+          var textArea = document.getElementById('cf-text');
+          if (textOpt) textOpt.hidden = false;
+          if (textArea) textArea.required = false;
         });
         recorder.start();
         start.disabled = true;
@@ -712,6 +812,124 @@
       if (recorder && recorder.state === 'recording') recorder.stop();
       start.disabled = false;
       stop.disabled = true;
+    });
+  })();
+
+  /* ── Kontaktformular ────────────────────────────────────────────────────
+     Die Seite liegt statisch auf GitHub Pages — dort gibt es keinen Server,
+     der ein POST entgegennimmt. Solange ENDPUNKT leer ist, fällt das Formular
+     auf eine vorausgefüllte E-Mail zurück; es funktioniert also ab dem ersten
+     Tag, nur ohne Automatik dahinter. Eine Sprachaufnahme kann weder POST noch
+     mailto automatisch mitschicken — sie bleibt der separate, lokale Download
+     oben, kein Datei-Upload durch das Formular.
+
+     Content-Type text/plain ist Absicht: Damit entfällt der CORS-Preflight,
+     den Apps Script nicht beantwortet. Der Inhalt bleibt JSON.
+  ── */
+  (function () {
+    var ENDPUNKT = '';                       // nach dem Web-App-Deploy eintragen
+    var form = document.getElementById('anfrage');
+    if (!form) return;
+    var status = document.getElementById('cf-status');
+    var button = form.querySelector('button[type=submit]');
+
+    function melde(text, artOk) {
+      status.className = 'cf-status ' + (artOk ? 'ok' : 'err');
+      status.innerHTML = text;
+    }
+
+    function hatAufnahme() {
+      var link = document.getElementById('voiceDownload');
+      return !!(link && !link.hidden);
+    }
+
+    function alsText(daten) {
+      var zeilen = [
+        'Name: ' + daten.name,
+        'E-Mail: ' + daten.email,
+        daten.telefon ? 'Telefon: ' + daten.telefon : null,
+        daten.branche ? 'Branche: ' + daten.branche : null,
+        daten.vorhanden.length ? 'Vorhanden: ' + daten.vorhanden.join(', ') : null,
+        '', daten.nachricht || '[Siehe angehängte Sprachaufnahme]'
+      ].filter(Boolean);
+      return zeilen.join('\n');
+    }
+
+    function mailtoFallback(daten) {
+      var url = 'mailto:info@digitalbau-nord.de'
+        + '?subject=' + encodeURIComponent('Anfrage Website — ' + daten.name)
+        + '&body=' + encodeURIComponent(alsText(daten));
+      window.location.href = url;
+      var hinweis = 'Ihr E-Mail-Programm wurde geöffnet — bitte dort noch auf „Senden" klicken. '
+        + 'Falls sich nichts tut, schreiben Sie uns direkt an '
+        + '<a href="mailto:info@digitalbau-nord.de">info@digitalbau-nord.de</a>.';
+      // Eine E-Mail kann die Aufnahme nicht mitnehmen. Das muss dastehen, sonst glaubt
+      // der Kunde, seine Sprachnachricht sei unterwegs.
+      if (daten.hatAufnahme) {
+        hinweis += '<br><br><strong>Ihre Sprachaufnahme wird nicht automatisch mitgeschickt.</strong> '
+          + 'Bitte hängen Sie die heruntergeladene Datei in der E-Mail an.';
+      }
+      melde(hinweis, true);
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // form.elements.X statt form.X: form.name waere die Formular-Eigenschaft
+      // (der Name des <form>), nicht das gleichnamige Eingabefeld.
+      var f = form.elements;
+      var aufnahmeVorhanden = hatAufnahme();
+      var daten = {
+        name: f.name.value.trim(),
+        email: f.email.value.trim(),
+        nachricht: f.nachricht.value.trim(),
+        telefon: f.telefon.value.trim(),
+        branche: f.branche.value.trim(),
+        vorhanden: Array.prototype.slice.call(form.querySelectorAll('input[name=vorhanden]:checked')).map(function (c) { return c.value; }),
+        falle: f.firma2.value,
+        hatAufnahme: aufnahmeVorhanden
+      };
+
+      if (!daten.name || !daten.email || (!daten.nachricht && !aufnahmeVorhanden)) {
+        melde(aufnahmeVorhanden
+          ? 'Bitte tragen Sie noch Name und E-Mail ein — Ihre Aufnahme ist bereits heruntergeladen.'
+          : 'Bitte füllen Sie Name, E-Mail und Ihr Projekt aus — oder nehmen Sie stattdessen eine Sprachnachricht auf.', false);
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(daten.email)) {
+        melde('Die E-Mail-Adresse sieht nicht vollständig aus. Bitte prüfen Sie sie kurz.', false);
+        return;
+      }
+      if (!f.einwilligung.checked) {
+        melde('Bitte bestätigen Sie, dass Sie die Datenschutzerklärung zur Kenntnis genommen haben.', false);
+        return;
+      }
+      // Honigtopf gefüllt = Formularroboter. Freundlich bestätigen, nichts senden.
+      if (daten.falle) { melde('Vielen Dank, Ihre Anfrage ist eingegangen.', true); return; }
+
+      if (!ENDPUNKT) { mailtoFallback(daten); return; }
+
+      button.disabled = true;
+      var alterInhalt = button.innerHTML;   // enthaelt den Pfeil-SVG — textContent wuerde ihn loeschen
+      button.textContent = 'Wird gesendet …';
+
+      fetch(ENDPUNKT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(daten)
+      }).then(function (r) {
+        return r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status));
+      }).then(function (antwort) {
+        if (!antwort || antwort.ok !== true) throw new Error('abgelehnt');
+        form.reset();
+        melde('Danke — Ihre Anfrage ist angekommen. Wir melden uns Mo–Fr zwischen 8 und 18 Uhr, in der Regel innerhalb weniger Stunden.', true);
+      }).catch(function () {
+        // Nicht kommentarlos scheitern: der Kunde soll seine Nachricht nicht verlieren.
+        mailtoFallback(daten);
+      }).then(function () {
+        button.disabled = false;
+        button.innerHTML = alterInhalt;
+      });
     });
   })();
 
